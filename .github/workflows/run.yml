@@ -70,7 +70,7 @@ jobs:
           # mv *.jpg gitdir/img/
           cd gitdir
           git init
-          git add online.txt index.html README.md img res/*.m3u8
+          git add index.html README.md img res/*.m3u8
           git commit -m "add video info"
           git remote add origin git@github.com:ghcdn/$(cat ../repo.txt).git
           git push -u origin master
