@@ -39,7 +39,6 @@ def find_video_info(video_id):
         soup = BeautifulSoup(r.text, 'lxml')
         title = soup.find('h3').text.strip()
         poster = soup.find('div', {'class': 'screencap'}).a['href']
-        info = soup.find('div', {'class': 'info'}).text.strip()
         img = soup.find('div', id='sample-waterfall').find_all('a')
         img_links = [poster]
         for i in img:
@@ -48,8 +47,6 @@ def find_video_info(video_id):
             r = requests.get(url, headers=header)
             with open(f"pic{i}.jpg", 'wb') as pic:
                 pic.write(r.content)
-        print(info)
-        print(poster, img_links)
         print(title, "video info had been saved!")
     except Exception as err:
         print(err, "don't find anything!")
