@@ -53,8 +53,5 @@ def find_video_info(video_id):
 
 if __name__ == '__main__':
     vid = parse_task()
-    try:
-        find_video_info(vid)
-    except Exception as e:
-        print(e)
+    find_video_info(vid)
     add_tracker(tracker_url)
