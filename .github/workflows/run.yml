@@ -1,0 +1,88 @@
+name: Video Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+      - name: Install dependent
+        run: |
+          aria2c -x 16 https://raw.githubusercontent.com/ghcdn/FFmpeg/master/ffmpeg
+          chmod +x ffmpeg
+          sudo mv ffmpeg /usr/local/bin/
+          sudo pip3 --quiet install bs4 lxml
+      
+      - name: Checkout source
+        uses: actions/checkout@v2
+        with:
+          ref: main
+      
+      - name: Setup task
+        run: |
+            rm README.md
+            python3 setup.py
+
+      - name: Download video
+        run: |
+            aria2c --conf-path=./aria2.conf $(cat url.txt)
+      
+      - name: Process video
+        run: |
+          #ffmpeg -hide_banner -loglevel error -ss 3 -i $(cat video.txt) -vf "select=gt(scene\,0.4)" -frames:v 16 -vsync vfr -vf fps=fps=1/450 thumb%02d.jpg
+          ffmpeg -hide_banner -loglevel error -i $(cat video.txt) -c copy -f hls -bsf:v h264_mp4toannexb -hls_list_size 0 -hls_segment_filename hls%4d.ts index.m3u8
+          rm -rf $(cat video.txt)
+
+      - name: Setup Git
+        env:
+          ACTION_DEPLOY_KEY: ${{ secrets.VIDEO_DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
+          chmod 700 ~/.ssh
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          git config --global user.email "github@chan.im"
+          git config --global user.name "ghcdn"
+      
+      - name: Create Github repo
+        env:
+          PUSH_TOKEN: ${{ secrets.REPO_KEY }}
+        run: |
+          curl \
+          -X POST \
+          -H "Authorization: token $PUSH_TOKEN" \
+          -H "Content-Type: application/json" \
+          https://api.github.com/user/repos \
+          -d "{\"name\": \"$(cat repo.txt)\"}"
+      
+      - name: Push to Github
+        run: |
+          mkdir -p gitdir/res/
+          mkdir -p gitdir/img/
+          mv online.txt index.html README.md gitdir/
+          mv *.m3u8 *.ts gitdir/res/
+          # mv *.jpg gitdir/img/
+          cd gitdir
+          git init
+          git add online.txt index.html README.md img res/*.m3u8
+          git commit -m "add video info"
+          git remote add origin git@github.com:ghcdn/$(cat ../repo.txt).git
+          git push -u origin master
+          for i in {0..9};do
+            for j in {0..9};do
+              files=(res/hls$i$j??.ts)
+              if [ -f ${files[0]} ];then
+                git add "${files[@]}"
+                git commit -m "$i$j st commit"
+                git push
+              else
+                exit 0
+              fi
+            done
+          done
