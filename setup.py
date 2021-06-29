@@ -2,11 +2,11 @@
 import requests
 from bs4 import BeautifulSoup
 
+tracker_url = "https://trackerslist.com/best_aria2.txt"
 header = {'User-Agent': 'Mozilla/5.0 (x86_64; rv:85.0) Gecko Firefox'}
 
 
-def setup():
-    # 解析任务
+def parse_task():
     task = open('task.txt', 'r')
     url = open('url.txt', 'w')
     video = open('video.txt', 'w')
@@ -18,11 +18,22 @@ def setup():
     task.close()
     url.close()
     repo.close()
-    print(info[0], info[1], info[2], "任务解析完毕！")
+    print(info[0], info[1], info[2], "task parsed!")
     return info[2]
 
 
-def gen_film_info(video_id):
+def add_tracker(url):
+    r = requests.get(url)
+    trackers = r.text
+    conf = open('aria2.conf', 'a+')
+    conf.write(f'bt-tracker={trackers}')
+    conf.close()
+    with open('aria2.conf', 'r') as f:
+        print(f.read())
+    print("tracker added!")
+
+
+def find_video_info(video_id):
     try:
         r = requests.get(f'https://www.javbus.com/{video_id}', headers=header)
         soup = BeautifulSoup(r.text, 'lxml')
@@ -39,53 +50,14 @@ def gen_film_info(video_id):
                 pic.write(r.content)
         print(info)
         print(poster, img_links)
-        print(title, "信息提取完毕！")
-    except Exception as e:
-        title = video_id
-        info = ''
-        img_links = []
-        print(e, "没找到相关影片信息！")
-
-    # 生成index.html
-    hls = open('hls.html', 'r')
-    html = open('index.html', 'w')
-    html.write(hls.read().replace(
-        '{repo}', video_id).replace('{title}', title))
-    hls.close()
-    html.close()
-
-    # 生成README.md
-    md = open('README.md', 'a+')
-    md.write(f'## [{title}](https://cdn.jsdelivr.net/gh/ghcdn/{video_id}/res/index.m3u8)\n\n')
-    if info:
-        md.write(info + '\n\n')
-        md.write('<img src="./img/pic0.jpg" width=100%> \n')
-    with open('thumb.html', 'r') as thumb:
-        md.write(thumb.read())
-    if info:
-        md.write("\n高清样图：\n\n")
-        for i in range(1, len(img_links)):
-            md.write(f'<img src="./img/pic{i}.jpg" width=100%>\n')
-    md.close()
-    print("影片信息已生成！")
-
-
-def add_tracker(url):
-    r = requests.get(url)
-    trackers = r.text
-    conf = open('aria2.conf', 'a+')
-    conf.write(f'bt-tracker={trackers}')
-    conf.close()
-    with open('aria2.conf', 'r') as f:
-        print(f.read())
-    print("tracker添加完毕！")
-
+        print(title, "video info had been saved!")
+    except Exception as err:
+        print(err, "don't find anything!")
 
 if __name__ == '__main__':
-    vid = setup()
+    vid = parse_task()
     try:
-        gen_film_info(vid)
+        find_video_info(vid)
     except Exception as e:
         print(e)
-    tracker_url = "https://trackerslist.com/best_aria2.txt"
     add_tracker(tracker_url)

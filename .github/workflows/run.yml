@@ -65,7 +65,7 @@ jobs:
         run: |
           mkdir -p gitdir/res/
           mkdir -p gitdir/img/
-          mv online.txt index.html README.md gitdir/
+          mv index.html README.md gitdir/
           mv *.m3u8 *.ts gitdir/res/
           # mv *.jpg gitdir/img/
           cd gitdir
