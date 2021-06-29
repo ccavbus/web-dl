@@ -40,10 +40,10 @@ jobs:
 
       - name: Setup Git
         env:
-          ACTION_DEPLOY_KEY: ${{ secrets.VIDEO_DEPLOY_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           mkdir -p ~/.ssh/
-          echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 700 ~/.ssh
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
@@ -52,11 +52,11 @@ jobs:
       
       - name: Create Github repo
         env:
-          PUSH_TOKEN: ${{ secrets.REPO_KEY }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
           curl \
           -X POST \
-          -H "Authorization: token $PUSH_TOKEN" \
+          -H "Authorization: token $ACCESS_TOKEN" \
           -H "Content-Type: application/json" \
           https://api.github.com/user/repos \
           -d "{\"name\": \"$(cat repo.txt)\"}"
