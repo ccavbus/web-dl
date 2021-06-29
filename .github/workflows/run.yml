@@ -25,7 +25,6 @@ jobs:
       
       - name: Setup task
         run: |
-            rm README.md
             python3 setup.py
 
       - name: Download video
@@ -65,13 +64,12 @@ jobs:
         run: |
           mkdir -p gitdir/res/
           mkdir -p gitdir/img/
-          mv index.html README.md gitdir/
           mv *.m3u8 *.ts gitdir/res/
           # mv *.jpg gitdir/img/
           cd gitdir
           git init
-          git add index.html README.md img res/*.m3u8
-          git commit -m "add video info"
+          git add img res/*.m3u8
+          git commit -m "add img and m3u8"
           git remote add origin git@github.com:ghcdn/$(cat ../repo.txt).git
           git push -u origin master
           for i in {0..9};do
