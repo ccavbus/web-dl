@@ -35,8 +35,8 @@ def add_tracker(url):
 
 def find_video_info(video_id):
     try:
-        r = requests.get(f'https://www.javbus.com/{video_id}', headers=header)
-        soup = BeautifulSoup(r.text, 'lxml')
+        r = requests.get(f"https://www.javbus.com/{video_id}", headers=header)
+        soup = BeautifulSoup(r.text, "html.parser")
         title = soup.find('h3').text.strip()
         poster = soup.find('div', {'class': 'screencap'}).a['href']
         img = soup.find('div', id='sample-waterfall').find_all('a')

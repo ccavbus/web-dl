@@ -13,13 +13,12 @@ jobs:
     steps:
       - name: Install dependent
         run: |
-          aria2c https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-amd64-static.tar.xz
+          aria2c --quiet https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-amd64-static.tar.xz
           ffmpeg_path=$(tar tf ffmpeg-git-amd64-static.tar.xz | grep amd64-static/ffmpeg)
           tar xf ffmpeg-git-amd64-static.tar.xz $ffmpeg_path && rm ffmpeg-git-amd64-static.tar.xz
           chmod +x $ffmpeg_path
           sudo mv $ffmpeg_path /usr/local/bin/
-          ffmpeg -version
-          sudo pip3 --quiet install bs4 lxml
+          sudo pip3 --quiet install bs4
       
       - name: Checkout source
         uses: actions/checkout@v2
