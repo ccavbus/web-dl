@@ -18,11 +18,9 @@ jobs:
 
       - name: Install dependent
         run: |
-          aria2c https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-amd64-static.tar.xz
-          ffmpeg_path=$(tar tf ffmpeg-git-amd64-static.tar.xz | grep amd64-static/ffmpeg)
-          tar xf ffmpeg-git-amd64-static.tar.xz $ffmpeg_path && rm ffmpeg-git-amd64-static.tar.xz
-          chmod +x $ffmpeg_path
-          sudo mv $ffmpeg_path /usr/local/bin/
+          aria2c https://github.com/eugeneware/ffmpeg-static/releases/latest/download/linux-x64
+          chmod +x linux-x64
+          sudo mv linux-x64  /usr/local/bin/ffmpeg
           sudo pip3 install bs4
       
       - name: Setup task
