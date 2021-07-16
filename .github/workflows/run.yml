@@ -21,7 +21,6 @@ jobs:
           aria2c https://github.com/eugeneware/ffmpeg-static/releases/latest/download/linux-x64
           chmod +x linux-x64
           sudo mv linux-x64  /usr/local/bin/ffmpeg
-          ffmpeg -version
           sudo pip3 install bs4
       
       - name: Setup task
