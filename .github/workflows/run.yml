@@ -11,19 +11,19 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
       - name: Install dependent
         run: |
-          aria2c https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-amd64-static.tar.xz
+          wget https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-amd64-static.tar.xz
           ffmpeg_path=$(tar tf ffmpeg-git-amd64-static.tar.xz | grep amd64-static/ffmpeg)
           tar xf ffmpeg-git-amd64-static.tar.xz $ffmpeg_path && rm ffmpeg-git-amd64-static.tar.xz
           chmod +x $ffmpeg_path
           sudo mv $ffmpeg_path /usr/local/bin/
           sudo pip3 install bs4
-      
-      - name: Checkout source
-        uses: actions/checkout@v2
-        with:
-          ref: main
       
       - name: Setup task
         run: |
