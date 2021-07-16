@@ -28,8 +28,6 @@ def add_tracker(url):
     conf = open('aria2.conf', 'a+')
     conf.write(f'bt-tracker={trackers}')
     conf.close()
-    with open('aria2.conf', 'r') as f:
-        print(f.read())
     print("tracker added!")
 
 
