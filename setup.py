@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 
 tracker_url = "https://trackerslist.com/best_aria2.txt"
-header = {'User-Agent': 'Mozilla/5.0 (x86_64; rv:85.0) Gecko Firefox'}
+header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101 Firefox/78.0'}
 
 
 def parse_task():
