@@ -18,6 +18,7 @@ jobs:
           tar xf ffmpeg-git-amd64-static.tar.xz $ffmpeg_path && rm ffmpeg-git-amd64-static.tar.xz
           chmod +x $ffmpeg_path
           sudo mv $ffmpeg_path /usr/local/bin/
+          ffmpeg -version
           sudo pip3 --quiet install bs4 lxml
       
       - name: Checkout source
