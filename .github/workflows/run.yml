@@ -62,11 +62,19 @@ jobs:
       
       - name: Push to Github
         run: |
-          mkdir -p gitdir/res/
-          mkdir -p gitdir/img/
-          mv *.m3u8 *.ts gitdir/res/
-          mv *.jpg gitdir/img/
-          cd gitdir
+          ## move pictures into dir
+          imgs=(*.jpg)
+          if [ -f ${imgs[0]} ];then
+            mkdir -p dir/img/
+            mv *.jpg dir/img/
+          fi
+
+          ## move video into dir
+          mkdir -p dir/res/
+          mv *.m3u8 *.ts dir/res/
+
+          ## get into dir and upload to github
+          cd dir
           git init
           git add img res/*.m3u8
           git commit -m "add img and m3u8"
