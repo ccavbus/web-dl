@@ -62,17 +62,15 @@ jobs:
       
       - name: Push to Github
         run: |
-          ## move pictures into dir
-          imgs=(*.jpg)
-          if [ -f ${imgs[0]} ];then
-            mkdir -p dir/img/
-            mv *.jpg dir/img/
-          fi
-
           ## move video into dir
           mkdir -p dir/res/
           mv *.m3u8 *.ts dir/res/
-
+          mkdir -p dir/img/
+          ## move pictures into dir
+          imgs=(*.jpg)
+          if [ -f ${imgs[0]} ];then
+            mv *.jpg dir/img/
+          fi
           ## get into dir and upload to github
           cd dir
           git init
