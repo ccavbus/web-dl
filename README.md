@@ -19,7 +19,7 @@ value: content of the token
 Use ssh-keygen tool to create a pair of ssh key with your github email:
 
 ```shell
-ssh-keygen -t rsa -C "github@chan.im"
+ssh-keygen -t rsa -C "you@example.com"
 ```
 
 And then add the public key of the ssh key pair to your github setting:
