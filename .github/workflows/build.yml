@@ -1,4 +1,4 @@
-name: Video Process
+name: Video Download
 
 on:
   workflow_dispatch:
