@@ -1,26 +1,10 @@
 #!/usr/bin/python3
+import os
 import requests
 from bs4 import BeautifulSoup
 
 tracker_url = "https://trackerslist.com/best_aria2.txt"
 header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101 Firefox/78.0'}
-
-
-def parse_task():
-    task = open('task.txt', 'r')
-    url = open('url.txt', 'w')
-    video = open('video.txt', 'w')
-    repo = open('repo.txt', 'w')
-    info = task.read().splitlines()
-    url.write(info[0])
-    video.write(info[1])
-    repo.write(info[2])
-    task.close()
-    url.close()
-    repo.close()
-    print(info[0], info[1], info[2], "task parsed!")
-    return info[2]
-
 
 def add_tracker(url):
     r = requests.get(url)
@@ -50,6 +34,6 @@ def find_video_info(video_id):
         print(err, "don't find anything!")
 
 if __name__ == '__main__':
-    vid = parse_task()
+    vid = os.getenv('github.event.inputs.repo')
     find_video_info(vid)
     add_tracker(tracker_url)

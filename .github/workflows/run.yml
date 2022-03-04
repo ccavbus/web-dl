@@ -1,9 +1,17 @@
 name: Video Process
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'Video URL(HTTP/HTTPS OR Metalink)'
+        required: true
+      path:
+        description: 'Video File Path(Wildcard support)'
+        required: true
+      repo:
+        description: 'Repo Name'
+        required: true
 
 jobs:
   build:
@@ -21,7 +29,7 @@ jobs:
           aria2c https://github.com/eugeneware/ffmpeg-static/releases/latest/download/linux-x64
           chmod +x linux-x64
           sudo mv linux-x64  /usr/local/bin/ffmpeg
-          sudo pip3 install bs4
+          pip install bs4
       
       - name: Setup task
         run: |
@@ -29,13 +37,13 @@ jobs:
 
       - name: Download video
         run: |
-            aria2c --conf-path=./aria2.conf $(cat url.txt)
+            aria2c --conf-path=./aria2.conf ${{ github.event.inputs.url }}
       
       - name: Process video
         run: |
-          #ffmpeg -hide_banner -loglevel error -i $(cat video.txt) -c copy -f hls -bsf:v h264_mp4toannexb -hls_list_size 0 -hls_segment_filename hls%4d.ts index.m3u8
-          ffmpeg -hide_banner -i $(cat video.txt) -c:v hevc -f hls -bsf:v hevc_mp4toannexb -hls_list_size 0 -hls_segment_filename hls%4d.ts index.m3u8
-          rm -rf $(cat video.txt)
+          ffmpeg -y -i ${{ github.event.inputs.path }} -c copy -f hls -bsf:v h264_mp4toannexb -hls_list_size 0 -hls_segment_filename hls%4d.ts index.m3u8
+          #ffmpeg -y -i ${{ github.event.inputs.path }} -c:v hevc -f hls -bsf:v hevc_mp4toannexb -hls_list_size 0 -hls_segment_filename hls%4d.ts index.m3u8
+          rm -rf ${{ github.event.inputs.path }}
 
       - name: Setup Git
         env:
@@ -58,7 +66,7 @@ jobs:
           -H "Authorization: token $ACCESS_TOKEN" \
           -H "Content-Type: application/json" \
           https://api.github.com/user/repos \
-          -d "{\"name\": \"$(cat repo.txt)\"}"
+          -d "{\"name\": \"${{ github.event.inputs.repo }}\"}"
       
       - name: Push to Github
         run: |
@@ -76,7 +84,7 @@ jobs:
           git init
           git add img res/*.m3u8
           git commit -m "add img and m3u8"
-          git remote add origin git@github.com:ghcdn/$(cat ../repo.txt).git
+          git remote add origin git@github.com:ghcdn/${{ github.event.inputs.repo }}.git
           git push -u origin master
           for i in {0..9};do
             for j in {0..9};do
