@@ -59,7 +59,7 @@ jobs:
       
       - name: Create Github repo
         env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           curl \
           -X POST \
