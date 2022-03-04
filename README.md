@@ -33,13 +33,3 @@ video-dl repo -> setting -> Secrets -> Action secrets -> New repository secret
 name: SSH_PRIVATE_KEY 
 
 value: content of ssh private key
-
-## Usage
-
-In task.txt，
-
-First line, fill link of **HTTP/HTTPS**, **BitTorrent** or **Metalink**,
-
-Secend line, fill the target video file path,
-
-third line fill repo name.
