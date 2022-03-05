@@ -1,4 +1,4 @@
-name: Repo
+name: Video to Repo
 
 on:
   workflow_dispatch:

@@ -1,4 +1,4 @@
-name: Artifact
+name: Zip to Artifact
 
 on:
   workflow_dispatch:
