@@ -1,0 +1,29 @@
+name: Video Download
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'Video URL(HTTP/HTTPS OR Metalink)'
+        required: true
+      path:
+        description: 'Video File Path(Wildcard support)'
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      - name: Install dependence
+        run: |
+          aria2c -h
+
+
+      - name: Download video
+        run: |
+            aria2c --conf-path=./aria2.conf ${{ github.event.inputs.url }}
