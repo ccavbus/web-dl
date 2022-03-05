@@ -1,4 +1,4 @@
-name: Video Download
+name: Artifact
 
 on:
   workflow_dispatch:
@@ -8,6 +8,9 @@ on:
         required: true
       path:
         description: 'Video File Path(Wildcard support)'
+        required: true
+      name:
+        description: 'Artifact Name'
         required: true
 
 jobs:
@@ -26,5 +29,5 @@ jobs:
       - name: Upload Video
         uses: actions/upload-artifact@v3
         with:
-          name: my-artifact
+          name: ${{ github.event.inputs.name }}
           path: ${{ github.event.inputs.path }}

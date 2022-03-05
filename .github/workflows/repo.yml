@@ -1,4 +1,4 @@
-name: Video Download
+name: Repo
 
 on:
   workflow_dispatch:
