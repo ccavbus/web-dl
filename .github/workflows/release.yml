@@ -49,6 +49,6 @@ jobs:
           files: |
             index.m3u8
             *.ts
-          tag_name: ${{ env.TAG_NAME }}
+          tag_name: ${{ github.event.inputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
