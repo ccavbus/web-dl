@@ -44,11 +44,9 @@ jobs:
           rm -rf ${{ github.event.inputs.path }}
 
       - name: Release Video
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            index.m3u8
-            *.ts
-          tag_name: ${{ github.event.inputs.tag }}
+        uses: Hs1r1us/Release-AIO@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.event.inputs.tag }}
+          asset_files: './*.ts'
