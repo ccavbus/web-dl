@@ -1,0 +1,50 @@
+name: Video to Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'Video URL(HTTP/HTTPS OR Metalink)'
+        required: true
+      path:
+        description: 'Video File Path(Wildcard support)'
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      - name: Install dependence
+        run: |
+          aria2c https://github.com/eugeneware/ffmpeg-static/releases/latest/download/linux-x64
+          chmod +x linux-x64
+          sudo mv linux-x64  /usr/local/bin/ffmpeg
+          pip install bs4
+      
+      - name: Setup task
+        run: |
+            python3 setup.py
+
+      - name: Download video
+        run: |
+            aria2c --conf-path=./aria2.conf ${{ github.event.inputs.url }}
+      
+      - name: Process video
+        run: |
+          ffmpeg -y -i ${{ github.event.inputs.path }} -c copy -f hls -bsf:v h264_mp4toannexb -hls_time 300 -hls_list_size 0 -hls_segment_filename hls%2d.ts index.m3u8
+          #ffmpeg -y -i ${{ github.event.inputs.path }} -c:v hevc -f hls -bsf:v hevc_mp4toannexb -hls_list_size 0 -hls_segment_filename hls%4d.ts index.m3u8
+          rm -rf ${{ github.event.inputs.path }}
+
+      - name: Release Video
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            index.m3u8
+            *.ts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
