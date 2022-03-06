@@ -44,9 +44,11 @@ jobs:
           rm -rf ${{ github.event.inputs.path }}
 
       - name: Release Video
-        uses: Hs1r1us/Release-AIO@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          tag_name: ${{ github.event.inputs.tag }}
-          asset_files: './*.ts'
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Development Build"
+          files: |
+            *.ts
