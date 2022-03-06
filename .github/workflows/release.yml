@@ -9,6 +9,9 @@ on:
       path:
         description: 'Video File Path(Wildcard support)'
         required: true
+      tag:
+        description: 'Release Tag'
+        required: true
 
 jobs:
   build:
@@ -46,5 +49,6 @@ jobs:
           files: |
             index.m3u8
             *.ts
+          tag_name: ${{ env.TAG_NAME }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
