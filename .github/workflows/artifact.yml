@@ -22,11 +22,12 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v2
 
-      - name: Download video
+      - name: Download Video
         run: |
+            python aria2.py
             aria2c --conf-path=./aria2.conf ${{ github.event.inputs.url }}
 
-      - name: Upload Video
+      - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: ${{ github.event.inputs.name }}

@@ -3,20 +3,9 @@ import os
 import requests
 from bs4 import BeautifulSoup
 
-tracker_url = "https://trackerslist.com/best_aria2.txt"
-header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101 Firefox/78.0'}
-
-def add_tracker(url):
-    r = requests.get(url)
-    trackers = r.text
-    conf = open('aria2.conf', 'a+')
-    conf.write(f'bt-tracker={trackers}')
-    conf.close()
-    print("tracker added!")
-
-
 def find_video_info(video_id):
     try:
+        header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101 Firefox/78.0'}
         r = requests.get(f"https://www.javbus.com/{video_id}", headers=header)
         soup = BeautifulSoup(r.text, "html.parser")
         title = soup.find('h3').text.strip()
@@ -36,4 +25,3 @@ def find_video_info(video_id):
 if __name__ == '__main__':
     vid = os.getenv('github.event.inputs.repo')
     find_video_info(vid)
-    add_tracker(tracker_url)

@@ -19,11 +19,7 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v2
 
-      - name: Install dependence
-        run: |
-          aria2c -h
-
-
       - name: Download video
         run: |
+            python aria2.py
             aria2c --conf-path=./aria2.conf ${{ github.event.inputs.url }}
