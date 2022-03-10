@@ -24,5 +24,5 @@ def find_video_info(video_id):
         print(err, "don't find anything!")
 
 if __name__ == '__main__':
-    vid = os.getenv('github.event.inputs.repo')
-    find_video_info(vid)
+    video_id = os.getenv('github.event.inputs.repo')
+    find_video_info(video_id)
