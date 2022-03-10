@@ -8,7 +8,8 @@ def find_video_info(video_id):
         header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101 Firefox/78.0'}
         r = requests.get(f"https://www.javbus.com/{video_id}", headers=header)
         soup = BeautifulSoup(r.text, "html.parser")
-        title = soup.find('h3').text.strip()
+        content = soup.find('div', {'class': 'container'})
+        title = content.h3.text.strip()
         poster = "https://www.javbus.com/" + soup.find('div', {'class': 'screencap'}).a['href']
         img = soup.find('div', id='sample-waterfall').find_all('a')
         img_links = [poster]

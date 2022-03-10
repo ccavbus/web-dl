@@ -69,7 +69,7 @@ jobs:
           -d "{\"name\": \"${{ github.event.inputs.repo }}\"}"
       
       - name: Push to Github
-        env: |
+        env:
           REPO: ${{ github.event.inputs.repo }}
         run: |
           ## move video into dir
