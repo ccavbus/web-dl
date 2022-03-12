@@ -1,0 +1,93 @@
+name: Remote Download Video to Repo
+
+on:
+  repository_dispatch:
+    types: [repo]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      - name: Install dependence
+        run: |
+          aria2c https://github.com/eugeneware/ffmpeg-static/releases/latest/download/linux-x64
+          chmod +x linux-x64
+          sudo mv linux-x64  /usr/local/bin/ffmpeg
+          pip install bs4
+      
+      - name: Setup task
+        run: |
+            python aria2.py
+            python javinfo.py
+
+      - name: Download video
+        run: |
+            aria2c --conf-path=./aria2.conf ${{ github.event.client_payload.url }}
+      
+      - name: Process video
+        run: |
+          ffmpeg -hide_banner -i ${{ github.event.client_payload.path }} \
+                 -c copy -f hls -bsf:v h264_mp4toannexb \
+                 -hls_list_size 0 -hls_segment_filename hls%4d.ts index.m3u8
+          rm -rf ${{ github.event.client_payload.path }}
+
+      - name: Setup Git
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 700 ~/.ssh
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
+      
+      - name: Create Github repo
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+          curl \
+          -X POST \
+          -H "Authorization: token $ACCESS_TOKEN" \
+          -H "Content-Type: application/json" \
+          https://api.github.com/user/repos \
+          -d "{\"name\": \"${{ github.event.client_payload.repo }}\"}"
+      
+      - name: Push to Github
+        env:
+          REPO: ${{ github.event.client_payload.repo }}
+        run: |
+          ## move video into dir
+          mkdir -p dir/res/
+          mv *.m3u8 *.ts dir/res/
+          mkdir -p dir/img/
+          ## move pictures into dir
+          imgs=(*.jpg)
+          if [ -f ${imgs[0]} ];then
+            mv *.jpg dir/img/
+          fi
+          ## get into dir and upload to github
+          cd dir
+          git init
+          git add img res/*.m3u8
+          git commit -m "add img and m3u8"
+          git remote add origin git@github.com:$GITHUB_REPOSITORY_OWNER/$REPO.git
+          git push -u origin master
+          for i in {0..9};do
+            for j in {0..9};do
+              files=(res/hls$i$j??.ts)
+              if [ -f ${files[0]} ];then
+                git add "${files[@]}"
+                git commit -m "$i$j st commit"
+                git push
+              else
+                exit 0
+              fi
+            done
+          done
