@@ -11,10 +11,11 @@ def find_video_info(video_id):
         content = soup.find('div', {'class': 'container'})
         title = content.h3.text.strip()
         poster = "https://www.javbus.com/" + soup.find('div', {'class': 'screencap'}).a['href']
-        img = soup.find('div', id='sample-waterfall').find_all('a')
         img_links = [poster]
-        for i in img:
-            img_links.append(i['href'])
+        img = soup.find('div', id='sample-waterfall')
+        if img:
+            for i in img.find_all('a'):
+                img_links.append(i['href'])
         for i, url in zip(range(len(img_links)), img_links):
             r = requests.get(url, headers=header)
             with open(f"pic{i}.jpg", 'wb') as pic:
