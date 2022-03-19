@@ -9,6 +9,7 @@ def find_video_info(video_id):
         r = requests.get(f"https://www.javbus.com/{video_id}", headers=header)
         soup = BeautifulSoup(r.text, "html.parser")
         content = soup.find('div', {'class': 'container'})
+        print(content)
         title = content.h3.text.strip()
         poster = "https://www.javbus.com/" + soup.find('div', {'class': 'screencap'}).a['href']
         img_links = [poster]
