@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import os
+import sys
 import requests
 from bs4 import BeautifulSoup
 
@@ -9,7 +9,6 @@ def find_video_info(video_id):
         r = requests.get(f"https://www.javbus.com/{video_id}", headers=header)
         print(f"https://www.javbus.com/{video_id}")
         soup = BeautifulSoup(r.text, "html.parser")
-        print(soup)
         content = soup.find('div', {'class': 'container'})
         title = content.h3.text.strip()
         poster = "https://www.javbus.com/" + soup.find('div', {'class': 'screencap'}).a['href']
@@ -27,5 +26,5 @@ def find_video_info(video_id):
         print(err, "don't find anything!")
 
 if __name__ == '__main__':
-    video_id = os.getenv('github.event.inputs.repo')
+    video_id = sys.argv[1]
     find_video_info(video_id)

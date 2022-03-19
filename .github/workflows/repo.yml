@@ -32,7 +32,7 @@ jobs:
       - name: Setup task
         run: |
             python aria2.py
-            python javinfo.py
+            python javinfo.py ${{ github.event.inputs.path }}
 
       - name: Download video
         run: |
