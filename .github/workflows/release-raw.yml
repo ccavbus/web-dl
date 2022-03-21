@@ -27,7 +27,7 @@ jobs:
             python aria2.py
             wget -q https://github.com/P3TERX/aria2.conf/raw/master/dht.dat
             wget -q https://github.com/P3TERX/aria2.conf/raw/master/dht6.dat
-            aria2c --conf-path=./aria2.conf ${{ github.event.inputs.url }}
+            aria2c --conf-path=./aria2.conf "${{ github.event.inputs.url }}"
 
       - name: Release Video
         uses: marvinpinto/action-automatic-releases@latest
@@ -36,4 +36,4 @@ jobs:
           automatic_release_tag: ${{ github.event.inputs.tag }}
           prerelease: false
           files: |
-            ${{ github.event.inputs.path }}
+            "${{ github.event.inputs.path }}"

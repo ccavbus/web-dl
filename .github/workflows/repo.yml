@@ -33,6 +33,8 @@ jobs:
         run: |
             python aria2.py
             python javinfo.py ${{ github.event.inputs.repo }}
+            wget -q https://github.com/P3TERX/aria2.conf/raw/master/dht.dat
+            wget -q https://github.com/P3TERX/aria2.conf/raw/master/dht6.dat
 
       - name: Download video
         run: |
