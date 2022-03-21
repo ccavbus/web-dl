@@ -25,6 +25,8 @@ jobs:
       - name: Download video
         run: |
             python aria2.py
+            wget https://github.com/P3TERX/aria2.conf/raw/master/dht.dat
+            wget https://github.com/P3TERX/aria2.conf/raw/master/dht6.dat
             aria2c --conf-path=./aria2.conf ${{ github.event.inputs.url }}
 
       - name: Release Video
