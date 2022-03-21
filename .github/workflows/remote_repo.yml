@@ -29,7 +29,7 @@ jobs:
 
       - name: Download video
         run: |
-            aria2c --conf-path=./aria2.conf ${{ github.event.client_payload.url }}
+            aria2c --conf-path=./aria2.conf "${{ github.event.client_payload.url }}"
       
       - name: Process video
         run: |
