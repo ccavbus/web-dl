@@ -36,4 +36,4 @@ jobs:
           automatic_release_tag: ${{ github.event.inputs.tag }}
           prerelease: false
           files: |
-            "${{ github.event.inputs.path }}"
+            ${{ github.event.inputs.path }}
