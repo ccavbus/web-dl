@@ -11,5 +11,5 @@ def add_tracker(url):
 
 
 if __name__ == '__main__':
-    url = "https://trackerslist.com/best_aria2.txt"
+    url = "https://trackerslist.com/all_aria2.txt"
     add_tracker(url)
