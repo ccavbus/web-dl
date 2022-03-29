@@ -24,7 +24,7 @@ jobs:
 
       - name: Setup Aria2
         run: |
-            df -h
+            df -h ./
             ls / -llh
             python aria2.py
             wget -q https://github.com/P3TERX/aria2.conf/raw/master/dht.dat
