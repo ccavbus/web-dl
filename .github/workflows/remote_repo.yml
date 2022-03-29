@@ -1,4 +1,4 @@
-name: Remote Download Video to Repo
+name: Remote HLS to Repo
 
 on:
   repository_dispatch:

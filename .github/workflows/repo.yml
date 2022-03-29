@@ -1,4 +1,4 @@
-name: Video to Repo
+name: HLS to Repo
 
 on:
   workflow_dispatch:
