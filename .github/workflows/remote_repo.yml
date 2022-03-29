@@ -20,8 +20,9 @@ jobs:
           sudo mv linux-x64  /usr/local/bin/ffmpeg
           pip install bs4
       
-      - name: Setup task
+      - name: Setup Aria2
         run: |
+            df -h
             python aria2.py
             python javinfo.py ${{ github.event.inputs.repo }}
             wget -q https://github.com/P3TERX/aria2.conf/raw/master/dht.dat

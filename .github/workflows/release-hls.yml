@@ -22,17 +22,19 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v2
 
-      - name: Setup FFmpeg
+      - name: Setup Aria2/FFmpeg
         run: |
+          df -h
+          python aria2.py
+          wget -q https://github.com/P3TERX/aria2.conf/raw/master/dht.dat
+          wget -q https://github.com/P3TERX/aria2.conf/raw/master/dht6.dat
           aria2c https://github.com/eugeneware/ffmpeg-static/releases/latest/download/linux-x64
           chmod +x linux-x64
           sudo mv linux-x64  /usr/local/bin/ffmpeg
 
       - name: Download video
         run: |
-            python aria2.py
-            wget -q https://github.com/P3TERX/aria2.conf/raw/master/dht.dat
-            wget -q https://github.com/P3TERX/aria2.conf/raw/master/dht6.dat
+            
             aria2c --conf-path=./aria2.conf "${{ github.event.inputs.url }}"
 
       - name: Process video
