@@ -52,3 +52,11 @@ jobs:
           prerelease: false
           files: |
             *.ts
+
+      - name: Clean log
+        uses: igorjs/gh-actions-clean-workflow@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+          days_old: 1
