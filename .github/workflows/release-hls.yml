@@ -39,9 +39,8 @@ jobs:
 
       - name: Process video
         run: |
-          ffmpeg -hide_banner -i ${{ github.event.inputs.path }} \
-                 -c copy -sn -f hls -bsf:v h264_mp4toannexb \
-                 -hls_time 60 -hls_list_size 0 -hls_segment_filename vue%d.ts index.ts
+          ffmpeg -hide_banner -i ${{ github.event.inputs.path }} -c copy -sn \
+          -f hls -hls_time 60 -hls_list_size 0 -hls_segment_filename vue%d.ts index.ts
           rm -rf ${{ github.event.inputs.path }}
 
       - name: Release Video
