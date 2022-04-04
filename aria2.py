@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 import requests
 
-def add_tracker(url):
+def add_tracker(mylist, url):
     r = requests.get(url)
-    trackers = r.text
+    trackers = ','.join(mylist) + ',' +  r.text
     conf = open('aria2.conf', 'a+')
     conf.write(f'bt-tracker={trackers}')
     conf.close()
@@ -11,5 +11,6 @@ def add_tracker(url):
 
 
 if __name__ == '__main__':
+    mylist = ["http://sukebei.tracker.wf:8888/announce"]
     url = "https://trackerslist.com/best_aria2.txt"
-    add_tracker(url)
+    add_tracker(mylist, url)
