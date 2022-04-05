@@ -11,6 +11,7 @@ def add_tracker(mylist, url):
 
 
 if __name__ == '__main__':
-    mylist = ["http://sukebei.tracker.wf:8888/announce"]
+    mylist = ["http://sukebei.tracker.wf:8888/announce",
+              "http://tracker.bt4g.com:2095/announce"]
     url = "https://trackerslist.com/best_aria2.txt"
     add_tracker(mylist, url)
