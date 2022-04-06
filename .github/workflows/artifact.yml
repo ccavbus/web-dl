@@ -24,7 +24,6 @@ jobs:
         with:
           root-reserve-mb: 512
           swap-size-mb: 1024
-          remove-dotnet: 'true'
 
       - name: Checkout source
         uses: actions/checkout@v2
