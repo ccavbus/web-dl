@@ -34,12 +34,18 @@ jobs:
       - name: Setup Aria2
         run: |
             python aria2.py
-            wget -q https://github.com/P3TERX/aria2.conf/raw/master/dht.dat
-            wget -q https://github.com/P3TERX/aria2.conf/raw/master/dht6.dat
 
       - name: Download video
         run: |
             aria2c --conf-path=./aria2.conf "${{ github.event.inputs.url }}"
+
+      - name: Update DHT
+        run: |
+          git config --local user.email "you@example.com"
+          git config --local user.name "Your Name"
+          git add dht.dat dht6.dat
+          git commit -m 'update' || exit 0
+          git push origin main
 
       - name: Release Video
         uses: marvinpinto/action-automatic-releases@latest

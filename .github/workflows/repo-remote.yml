@@ -31,13 +31,19 @@ jobs:
             df -h
             python aria2.py
             python javinfo.py ${{ github.event.inputs.repo }}
-            wget -q https://github.com/P3TERX/aria2.conf/raw/master/dht.dat
-            wget -q https://github.com/P3TERX/aria2.conf/raw/master/dht6.dat
 
       - name: Download video
         run: |
             aria2c --conf-path=./aria2.conf "${{ github.event.client_payload.url }}"
-      
+
+      - name: Update DHT
+        run: |
+          git config --local user.email "you@example.com"
+          git config --local user.name "Your Name"
+          git add dht.dat dht6.dat
+          git commit -m 'update' || exit 0
+          git push origin main
+
       - name: Process video
         run: |
           ffmpeg -hide_banner -i ${{ github.event.client_payload.path }} \

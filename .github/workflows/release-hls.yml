@@ -31,16 +31,21 @@ jobs:
       - name: Setup Aria2/FFmpeg
         run: |
           python aria2.py
-          wget -q https://github.com/P3TERX/aria2.conf/raw/master/dht.dat
-          wget -q https://github.com/P3TERX/aria2.conf/raw/master/dht6.dat
           aria2c https://github.com/eugeneware/ffmpeg-static/releases/latest/download/linux-x64
           chmod +x linux-x64
           sudo mv linux-x64  /usr/local/bin/ffmpeg
 
       - name: Download video
-        run: |
-            
+        run: | 
             aria2c --conf-path=./aria2.conf "${{ github.event.inputs.url }}"
+
+      - name: Update DHT
+        run: |
+          git config --local user.email "you@example.com"
+          git config --local user.name "Your Name"
+          git add dht.dat dht6.dat
+          git commit -m 'update' || exit 0
+          git push origin main
 
       - name: Process video
         run: |

@@ -44,7 +44,7 @@ jobs:
         run: |
             aria2c --conf-path=./aria2.conf "${{ github.event.inputs.url }}"
 
-      - name: Update repo
+      - name: Update DHT
         run: |
           git config --local user.email "you@example.com"
           git config --local user.name "Your Name"
@@ -68,8 +68,6 @@ jobs:
           chmod 700 ~/.ssh
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
       
       - name: Create Github repo
         env:
