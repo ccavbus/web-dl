@@ -43,9 +43,10 @@ jobs:
         run: |
           git config --local user.email "you@example.com"
           git config --local user.name "Your Name"
+          git pull
           git add dht.dat dht6.dat
           git commit -m 'update'
-          git push origin main || exit 0
+          git push origin main
 
       - name: Release Video
         uses: marvinpinto/action-automatic-releases@latest
