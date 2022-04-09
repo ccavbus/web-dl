@@ -43,7 +43,11 @@ jobs:
         run: |
           git config --local user.email "you@example.com"
           git config --local user.name "Your Name"
+          mv dht.dat dht
+          mv dht6.dat dht6
           git pull
+          mv dht dht.dat
+          mv dht6 dht6.dat
           git add dht.dat dht6.dat
           git commit -m 'update'
           git push origin main
