@@ -49,8 +49,8 @@ jobs:
           git config --local user.email "you@example.com"
           git config --local user.name "Your Name"
           git add dht.dat dht6.dat
-          git commit -m 'update' || exit 0
-          git push origin main
+          git commit -m 'update'
+          git push origin main || exit 0
 
       - name: Process video
         run: |
