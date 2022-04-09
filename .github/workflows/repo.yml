@@ -56,7 +56,7 @@ jobs:
         run: |
           ffmpeg -hide_banner -i ${{ github.event.inputs.path }} \
                  -c copy -f hls -bsf:v h264_mp4toannexb \
-                 -hls_list_size 0 -hls_segment_filename hls%4d.ts index.m3u8
+                 -hls_list_size 0 -hls_segment_filename %4d.ts index.m3u8
           rm -rf ${{ github.event.inputs.path }}
 
       - name: Setup Git
@@ -104,7 +104,7 @@ jobs:
           git push -u origin master
           for i in {0..9};do
             for j in {0..9};do
-              files=(res/hls$i$j??.ts)
+              files=(res/$i$j??.ts)
               if [ -f ${files[0]} ];then
                 git add "${files[@]}"
                 git commit -m "$i$j st commit"
