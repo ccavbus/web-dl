@@ -100,11 +100,13 @@ jobs:
           if [ -f ${imgs[0]} ];then
             mv *.jpg dir/img/
           fi
+          ## move index.html into dir
+          mv index.html dir/
           ## get into dir and upload to github
           cd dir
           git init
-          git add img res/*.m3u8
-          git commit -m "add img and m3u8"
+          git add img res/*.m3u8 index.html
+          git commit -m "add img, m3u8, index"
           git remote add origin git@github.com:$GITHUB_REPOSITORY_OWNER/$REPO.git
           git push -u origin master
           for i in {0..9};do

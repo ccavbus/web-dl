@@ -25,6 +25,14 @@ def find_video_info(video_id):
     except Exception as err:
         print(err, "don't find anything!")
 
+def gen_index(video_id):
+    index = open('index.html', 'w')
+    with open('hls.html') as f:
+        text = f.read().replace('{name}', video_id)
+    index.write(text)
+    index.close()
+
 if __name__ == '__main__':
     video_id = sys.argv[1]
+    gen_index(video_id)
     find_video_info(video_id)
