@@ -55,6 +55,7 @@ jobs:
       - name: Process video
         run: |
           video=`echo ${{ github.event.inputs.path }}`
+          echo $video
           bash video_preview.sh $video 480 4 4 preview.jpg
           ffmpeg -hide_banner -i ${{ github.event.inputs.path }} \
                  -c copy -f hls -bsf:v h264_mp4toannexb -hls_time 1 \
