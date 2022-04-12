@@ -58,7 +58,7 @@ def gen_card_tag(href, img_src, title):
 # total_page: number of index page(for figuring out number of pagination)
 def gen_index(owner, index_num, video_id_list, total_page):
     html_name = f"index{index_num}.html"
-    exclude_repos = {'video-dl', 'setup', 'JavSub'}
+    exclude_repos = {'video-dl', 'JavSub'}
     html = open(html_name, "wb")
     homepage = open("./template/home.html", "r")
     soup = BeautifulSoup(homepage.read(), "html.parser")
