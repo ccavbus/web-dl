@@ -101,7 +101,7 @@ jobs:
           cd dir
           git init
           git add img res/*.m3u8 index.html
-          git commit -m "add img, m3u8, index"
+          git commit -m "Add img and index"
           git remote add origin git@github.com:$GITHUB_REPOSITORY_OWNER/$REPO.git
           git push -u origin master
           for i in {0..9};do

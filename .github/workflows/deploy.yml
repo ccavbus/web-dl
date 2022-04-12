@@ -1,0 +1,30 @@
+name: Deploy Website
+
+on: [push, workflow_dispatch, repository_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
+      - name: Build site
+        env:
+          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+          pip --quiet install bs4
+          cd home
+          mkdir -p build
+          mkdir -p page
+          python build.py
+          mv ./*.html ./css ./page ./build
+
+      - name: Deploy site
+        uses:  NickSchimek/deploy_jamstack_action@main
+        with:
+          build-dir: home/build
