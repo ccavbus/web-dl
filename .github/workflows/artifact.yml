@@ -9,9 +9,6 @@ on:
       path:
         description: 'File Path(Wildcard support)'
         required: true
-      name:
-        description: 'Artifact Name'
-        required: true
 
 jobs:
   build:
@@ -47,5 +44,4 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ github.event.inputs.name }}
           path: ${{ github.event.inputs.path }}
