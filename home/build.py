@@ -118,7 +118,7 @@ def get_public_repo_num(owner)->int:
 
 
 if __name__ == '__main__':
-    token = os.getenv('REPO_KEY')
+    token = os.getenv('GH_TOKEN')
     owner = os.getenv('GITHUB_REPOSITORY_OWNER')
     total_page = int(get_public_repo_num(owner)/30) + 1
     for i in range(1, total_page + 1):

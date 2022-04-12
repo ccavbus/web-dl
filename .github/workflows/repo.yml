@@ -73,11 +73,11 @@ jobs:
       
       - name: Create Github repo
         env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
           curl \
           -X POST \
-          -H "Authorization: token $ACCESS_TOKEN" \
+          -H "Authorization: token $GH_TOKEN" \
           -H "Content-Type: application/json" \
           https://api.github.com/user/repos \
           -d "{\"name\": \"${{ github.event.inputs.repo }}\"}"
@@ -118,6 +118,8 @@ jobs:
           done
 
       - name: Build site
+        env:
+          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
           cd home
           mkdir -p build
