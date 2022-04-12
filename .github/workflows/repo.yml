@@ -51,11 +51,6 @@ jobs:
           git add dht.dat dht6.dat
           git commit -m 'update'
           git push -f origin main
-      
-      - name: Seeding
-        run: |
-          ls -ll
-          aria2c -V --bt-force-encryption=true -d ${{ github.event.inputs.path }} *.torrent
 
       - name: Process video
         run: |
