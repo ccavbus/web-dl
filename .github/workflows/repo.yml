@@ -34,7 +34,7 @@ jobs:
           chmod +x linux-x64
           sudo mv linux-x64  /usr/local/bin/ffmpeg
           pip --quiet install bs4
-          python aria2.py
+          python ./aria2/add_tracker.py
 
       - name: Get jav info
         run: |
@@ -48,7 +48,7 @@ jobs:
         run: |
           git config --local user.email "you@example.com"
           git config --local user.name "Your Name"
-          git add dht.dat dht6.dat
+          git add ./aria2/dht.dat ./aria2/dht6.dat
           git commit -m 'update'
           git push -f origin main
 
@@ -58,6 +58,7 @@ jobs:
           ffmpeg -hide_banner -i ${{ github.event.inputs.path }} \
                  -c copy -f hls -bsf:v h264_mp4toannexb -hls_time 1 \
                  -hls_list_size 0 -hls_segment_filename %4d.ts index.m3u8
+          rm -rf ${{ github.event.inputs.path }}
 
       - name: Setup Git
         env:

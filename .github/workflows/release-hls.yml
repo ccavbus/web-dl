@@ -30,20 +30,20 @@ jobs:
 
       - name: Setup Aria2/FFmpeg
         run: |
-          python aria2.py
+          python ./aria2/add_tracker.py
           aria2c https://github.com/eugeneware/ffmpeg-static/releases/latest/download/linux-x64
           chmod +x linux-x64
           sudo mv linux-x64  /usr/local/bin/ffmpeg
 
       - name: Download video
         run: | 
-            aria2c --conf-path=./aria2.conf "${{ github.event.inputs.url }}"
+            aria2c --conf-path=./aria2/aria2.conf "${{ github.event.inputs.url }}"
 
       - name: Update DHT
         run: |
           git config --local user.email "you@example.com"
           git config --local user.name "Your Name"
-          git add dht.dat dht6.dat
+          git add ./aria2/dht.dat ./aria2/dht6.dat
           git commit -m 'update'
           git push -f origin main
 

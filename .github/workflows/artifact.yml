@@ -25,12 +25,9 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v2
 
-      - name: Setup Aria2
-        run: |
-            python ./aria2/add_tracker.py
-
       - name: Download Video
         run: |
+            python ./aria2/add_tracker.py
             aria2c --conf-path=./aria2/aria2.conf "${{ github.event.inputs.url }}"
 
       - name: Update DHT
