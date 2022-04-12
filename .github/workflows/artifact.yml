@@ -31,7 +31,7 @@ jobs:
 
       - name: Download Video
         run: |
-            aria2c --conf-path=./aria2.conf "${{ github.event.inputs.url }}"
+            aria2c --conf-path=./aria2/aria2.conf "${{ github.event.inputs.url }}"
 
       - name: Update DHT
         run: |
