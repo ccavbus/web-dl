@@ -26,11 +26,10 @@ def find_video_info(video_id):
         print(err, "don't find anything!")
 
 def gen_index(video_id):
-    index = open('index.html', 'w')
-    with open('hls.html') as f:
+    with open('index.html') as f:
         text = f.read().replace('{name}', video_id)
-    index.write(text)
-    index.close()
+    with open('index.html', 'w') as f:
+        f.write(text)
 
 if __name__ == '__main__':
     video_id = sys.argv[1]

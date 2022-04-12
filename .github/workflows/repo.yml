@@ -33,7 +33,7 @@ jobs:
           aria2c https://github.com/eugeneware/ffmpeg-static/releases/latest/download/linux-x64
           chmod +x linux-x64
           sudo mv linux-x64  /usr/local/bin/ffmpeg
-          pip install bs4
+          pip --quiet install bs4
           python aria2.py
 
       - name: Get jav info
@@ -116,6 +116,19 @@ jobs:
               fi
             done
           done
+
+      - name: Build site
+        run: |
+          cd home
+          mkdir -p build
+          mkdir -p page
+          python build.py
+          mv *.html css page build
+
+      - name: Deploy site
+        uses:  NickSchimek/deploy_jamstack_action@main
+        with:
+          build-dir: home/build
 
       - name: Clean log
         uses: igorjs/gh-actions-clean-workflow@v1
