@@ -42,14 +42,6 @@ jobs:
         run: |
             aria2c --conf-path=./aria2/aria2.conf "${{ github.event.inputs.url }}"
 
-      - name: Update DHT
-        run: |
-          git config --local user.email "you@example.com"
-          git config --local user.name "Your Name"
-          git add ./aria2/dht.dat ./aria2/dht6.dat
-          git commit -m 'update'
-          git push -f origin main
-
       - name: Process video
         run: |
           #bash video_preview.sh ${{ github.event.inputs.path }} 480 4 4 preview.jpg
