@@ -1,6 +1,6 @@
 ## Configure
 
-### Token for creating repo
+### Token for creating repo and listing repos
 
 Login Github and go to  account setting to create a peasonal  access token:
 
