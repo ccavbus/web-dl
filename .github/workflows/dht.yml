@@ -1,13 +1,10 @@
-name: Zip to Artifact
+name: Update DHT
 
 on:
   workflow_dispatch:
     inputs:
       url:
         description: 'URL(HTTP/HTTPS OR Metalink)'
-        required: true
-      path:
-        description: 'File Path(Wildcard support)'
         required: true
 
 jobs:
@@ -16,12 +13,6 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
-      - name: Maximize build space
-        uses: easimon/maximize-build-space@master
-        with:
-          root-reserve-mb: 512
-          swap-size-mb: 1024
-
       - name: Checkout source
         uses: actions/checkout@v2
 
@@ -30,7 +21,10 @@ jobs:
             python ./aria2/add_tracker.py
             aria2c --conf-path=./aria2/aria2.conf "${{ github.event.inputs.url }}"
 
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          path: ${{ github.event.inputs.path }}
+      - name: Update DHT
+        run: |
+          git config --local user.email "you@example.com"
+          git config --local user.name "Your Name"
+          git add ./aria2/dht.dat ./aria2/dht6.dat
+          git commit -m 'update'
+          git push -f origin main

@@ -34,7 +34,7 @@ jobs:
           chmod +x linux-x64 && sudo mv linux-x64  /usr/local/bin/ffmpeg
           pip --quiet install bs4 && python ./aria2/add_tracker.py
 
-      - name: Get jav info
+      - name: Get JAV info
         run: |
             python javinfo.py ${{ github.event.inputs.repo }}
 
