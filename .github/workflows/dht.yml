@@ -19,7 +19,7 @@ jobs:
       - name: Download Video
         run: |
             python ./aria2/add_tracker.py
-            sed -i 's/seed-time=0//g' ./aria2/aria2.conf
+            sed -i 's/seed-time=0/seed-time=60/g' ./aria2/aria2.conf
             sed -i 's/bt-max-peers=512/bt-max-peers=1024/g' ./aria2/aria2.conf
             aria2c --conf-path=./aria2/aria2.conf "${{ github.event.inputs.url }}"
 
