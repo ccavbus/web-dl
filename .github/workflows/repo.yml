@@ -59,6 +59,7 @@ jobs:
           chmod 700 ~/.ssh
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
+          echo "UserKnownHostsFile ~/.ssh/known_hosts" >> ~/.ssh/config
           git config --global user.email "you@example.com"
           git config --global user.name "Your Name"
       
