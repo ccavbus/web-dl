@@ -24,7 +24,8 @@ jobs:
       
       - name: Download
         run: |
-            transmission-cli -er -g ./transimission -w ./ "${{ github.event.inputs.url }}"
+            transmission-cli -er -g ./transimission -w ./ "${{ github.event.inputs.url }}" &
+            sleep 
             ls -ll
 
       - name: Update repo
