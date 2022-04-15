@@ -17,9 +17,7 @@ jobs:
             wget -q https://github.com/userdocs/qbittorrent-nox-static/releases/download/release-4.4.2_v2.0.5/x86_64-qbittorrent-nox -O qb
             chmod +x qb && ./qb --profile=./qbnox/profile -d
             curl ip.sb
-            ls -ll
-            top
-            sleep 600
+            x=1; while  [ $x -le 21600 ]; do echo "Welcome $(( x++ ))" && sleep 1; done
 
       - name: Update qb-nox
         run: |
