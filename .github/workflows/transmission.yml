@@ -26,11 +26,3 @@ jobs:
         run: |
             transmission-cli -er -g ./transmission -w ./ "${{ github.event.inputs.url }}"
             ls -ll
-
-      - name: Update repo
-        run: |
-          git config --local user.email "you@example.com"
-          git config --local user.name "Your Name"
-          git add ./transmission
-          git commit -m 'update'
-          git push -f origin main
