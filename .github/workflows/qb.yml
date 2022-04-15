@@ -1,4 +1,4 @@
-name: qb-nox
+name: qBittorrent nox
 
 on:
   workflow_dispatch
@@ -19,6 +19,7 @@ jobs:
             curl ip.sb
       
       - name: Waitting
+        run: |
             x=1; while  [ $x -le 3600 ]; do echo "Welcome $(( x++ ))" && sleep 60; done
 
       - name: Update qb-nox
