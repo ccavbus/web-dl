@@ -1,7 +1,11 @@
-name: qBittorrent nox
+name: Transmission-cli
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL(HTTP/HTTPS OR Metalink)'
+        required: true
 
 jobs:
   build:
@@ -12,20 +16,18 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v2
 
-      - name: Start qb-nox
+      - name: Setup
         run: |
-            wget -q https://github.com/userdocs/qbittorrent-nox-static/releases/download/release-4.4.2_v2.0.5/x86_64-qbittorrent-nox -O qb
-            chmod +x qb && ./qb --profile=./qbnox/profile -d
-            curl ip.sb
+            sudo apt install transmission-cli -y
       
-      - name: Waitting
+      - name: DL
         run: |
-            x=1; while  [ $x -le 3600 ]; do echo "Welcome $(( x++ ))" && sleep 60; done
+            transmission-cli -er -g ./transimission -w ./ "${{ github.event.inputs.url }}"
 
-      - name: Update qb-nox
+      - name: Update repo
         run: |
           git config --local user.email "you@example.com"
           git config --local user.name "Your Name"
-          git add ./qbnox/profile
+          git add ./transmission
           git commit -m 'update'
           git push -f origin main
