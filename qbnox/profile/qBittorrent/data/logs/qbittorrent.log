@@ -1,0 +1,104 @@
+(N) 2022-04-15T23:59:56 - qBittorrent v4.4.2 started
+(N) 2022-04-15T23:59:56 - Using config directory: /mnt/c/Users/Win10/Desktop/qbnox/profile/qBittorrent/config
+(I) 2022-04-15T23:59:58 - Trying to listen on: 0.0.0.0:62246,[::]:62246
+(N) 2022-04-15T23:59:58 - Peer ID: -qB4420-
+(N) 2022-04-15T23:59:58 - HTTP User-Agent is 'qBittorrent/4.4.2'
+(I) 2022-04-15T23:59:58 - DHT support [ON]
+(I) 2022-04-15T23:59:58 - Local Peer Discovery support [ON]
+(I) 2022-04-15T23:59:58 - PeX support [ON]
+(I) 2022-04-15T23:59:58 - Anonymous mode [OFF]
+(I) 2022-04-15T23:59:58 - Encryption support [ON]
+(I) 2022-04-15T23:59:58 - UPnP / NAT-PMP support [ON]
+(W) 2022-04-15T23:59:58 - Couldn't load IP geolocation database. Reason: No such file or directory
+(N) 2022-04-16T00:00:07 - qBittorrent v4.4.2 started
+(N) 2022-04-16T00:00:07 - Using config directory: /mnt/c/Users/Win10/Desktop/qbnox/profile/qBittorrent/config
+(I) 2022-04-16T00:00:09 - Trying to listen on: 0.0.0.0:29697,[::]:29697
+(N) 2022-04-16T00:00:09 - Peer ID: -qB4420-
+(N) 2022-04-16T00:00:09 - HTTP User-Agent is 'qBittorrent/4.4.2'
+(I) 2022-04-16T00:00:09 - DHT support [ON]
+(I) 2022-04-16T00:00:09 - Local Peer Discovery support [ON]
+(I) 2022-04-16T00:00:09 - PeX support [ON]
+(I) 2022-04-16T00:00:09 - Anonymous mode [OFF]
+(I) 2022-04-16T00:00:09 - Encryption support [ON]
+(I) 2022-04-16T00:00:09 - UPnP / NAT-PMP support [ON]
+(W) 2022-04-16T00:00:09 - Couldn't load IP geolocation database. Reason: No such file or directory
+(N) 2022-04-16T00:00:09 - Using built-in Web UI.
+(W) 2022-04-16T00:00:09 - Couldn't load Web UI translation for selected locale (C).
+(N) 2022-04-16T00:00:09 - Web UI: Now listening on IP: *, port: 8080
+(I) 2022-04-16T00:00:09 - Successfully listening on IP: 192.168.56.1, port: TCP/29697
+(I) 2022-04-16T00:00:09 - Successfully listening on IP: 192.168.56.1, port: UTP/29697
+(I) 2022-04-16T00:00:09 - Successfully listening on IP: 127.0.0.1, port: TCP/29697
+(I) 2022-04-16T00:00:09 - Successfully listening on IP: 127.0.0.1, port: UTP/29697
+(I) 2022-04-16T00:00:09 - Successfully listening on IP: 198.18.0.1, port: TCP/29697
+(I) 2022-04-16T00:00:09 - Successfully listening on IP: 198.18.0.1, port: UTP/29697
+(I) 2022-04-16T00:00:09 - Successfully listening on IP: 10.69.251.1, port: TCP/29697
+(I) 2022-04-16T00:00:09 - Successfully listening on IP: 10.69.251.1, port: UTP/29697
+(I) 2022-04-16T00:00:09 - Successfully listening on IP: fe80::c421:3126:8011:27af%eth1, port: TCP/29697
+(I) 2022-04-16T00:00:09 - Successfully listening on IP: fe80::c421:3126:8011:27af%eth1, port: UTP/29697
+(I) 2022-04-16T00:00:09 - Successfully listening on IP: ::1, port: TCP/29697
+(I) 2022-04-16T00:00:09 - Successfully listening on IP: ::1, port: UTP/29697
+(I) 2022-04-16T00:00:09 - Successfully listening on IP: 2001:250:4402:1119::288f, port: TCP/29697
+(I) 2022-04-16T00:00:09 - Successfully listening on IP: 2001:250:4402:1119::288f, port: UTP/29697
+(I) 2022-04-16T00:00:09 - Successfully listening on IP: fe80::8031:2a5c:5270:bd90%wifi0, port: TCP/29697
+(I) 2022-04-16T00:00:09 - Successfully listening on IP: fe80::8031:2a5c:5270:bd90%wifi0, port: UTP/29697
+(I) 2022-04-16T00:00:13 - IP geolocation database loaded. Type: DBIP-Country-Lite. Build time: Fri Apr 1 08:19:19 2022.
+(I) 2022-04-16T00:00:13 - Successfully updated IP geolocation database.
+(N) 2022-04-16T00:00:38 - WebAPI login success. IP: ::1
+(N) 2022-04-16T00:01:05 - 已成功加载所选地区 (zh) 的 Web UI 翻译。
+(N) 2022-04-16T00:01:05 - Web UI：正在监听 IP：*，端口：8080
+(I) 2022-04-16T00:01:30 - 检测到 Python，可执行文件名称：'python3'，版本：3.8.10
+(C) 2022-04-16T00:02:45 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP[192.168.56.1]: no router found
+(C) 2022-04-16T00:02:45 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP[192.168.56.1]: no router found
+(C) 2022-04-16T00:02:45 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP[192.168.56.1]: no router found
+(C) 2022-04-16T00:02:45 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP[198.18.0.1]: no router found
+(C) 2022-04-16T00:02:45 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP[198.18.0.1]: no router found
+(C) 2022-04-16T00:02:45 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP[198.18.0.1]: no router found
+(C) 2022-04-16T00:02:45 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP[10.69.251.1]: no router found
+(C) 2022-04-16T00:02:45 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP[10.69.251.1]: no router found
+(C) 2022-04-16T00:02:45 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP[10.69.251.1]: no router found
+(I) 2022-04-16T00:03:44 - Encryption support [强制]
+(N) 2022-04-16T00:03:44 - Web UI：正在监听 IP：*，端口：8080
+(I) 2022-04-16T00:06:08 - UPnP / NAT-PMP support [OFF]
+(N) 2022-04-16T00:06:21 - qBittorrent v4.4.2 已启动
+(N) 2022-04-16T00:06:21 - 使用配置目录：/mnt/c/Users/Win10/Desktop/qbnox/profile/qBittorrent/config
+(N) 2022-04-16T00:06:21 - qBittorrent v4.4.2 已启动
+(N) 2022-04-16T00:06:21 - 使用配置目录：/mnt/c/Users/Win10/Desktop/qbnox/profile/qBittorrent/config
+(I) 2022-04-16T00:06:21 - Trying to listen on: 0.0.0.0:29697,[::]:29697
+(N) 2022-04-16T00:06:21 - Peer ID: -qB4420-
+(N) 2022-04-16T00:06:21 - HTTP User-Agent is 'qBittorrent/4.4.2'
+(I) 2022-04-16T00:06:21 - DHT support [开启]
+(I) 2022-04-16T00:06:21 - Local Peer Discovery support [开启]
+(I) 2022-04-16T00:06:21 - PeX support [开启]
+(I) 2022-04-16T00:06:21 - Anonymous mode [关闭]
+(I) 2022-04-16T00:06:21 - Encryption support [强制]
+(I) 2022-04-16T00:06:21 - UPnP / NAT-PMP support [ON]
+(I) 2022-04-16T00:06:21 - IP 地理数据库已加载。类型：DBIP-Country-Lite。构建时间：Fri Apr 1 08:19:19 2022。
+(N) 2022-04-16T00:06:21 - 使用内置 Web UI。
+(N) 2022-04-16T00:06:21 - 已成功加载所选地区 (zh) 的 Web UI 翻译。
+(N) 2022-04-16T00:06:21 - Web UI：正在监听 IP：*，端口：8080
+(I) 2022-04-16T00:06:21 - Successfully listening on IP: 192.168.56.1, port: TCP/29697
+(I) 2022-04-16T00:06:21 - Successfully listening on IP: 192.168.56.1, port: UTP/29697
+(I) 2022-04-16T00:06:21 - Successfully listening on IP: 127.0.0.1, port: TCP/29697
+(I) 2022-04-16T00:06:21 - Successfully listening on IP: 127.0.0.1, port: UTP/29697
+(I) 2022-04-16T00:06:21 - Successfully listening on IP: 198.18.0.1, port: TCP/29697
+(I) 2022-04-16T00:06:21 - Successfully listening on IP: 198.18.0.1, port: UTP/29697
+(I) 2022-04-16T00:06:21 - Successfully listening on IP: 10.69.251.1, port: TCP/29697
+(I) 2022-04-16T00:06:21 - Successfully listening on IP: 10.69.251.1, port: UTP/29697
+(I) 2022-04-16T00:06:21 - Successfully listening on IP: fe80::c421:3126:8011:27af%eth1, port: TCP/29697
+(I) 2022-04-16T00:06:21 - Successfully listening on IP: fe80::c421:3126:8011:27af%eth1, port: UTP/29697
+(I) 2022-04-16T00:06:21 - Successfully listening on IP: ::1, port: TCP/29697
+(I) 2022-04-16T00:06:21 - Successfully listening on IP: ::1, port: UTP/29697
+(I) 2022-04-16T00:06:21 - Successfully listening on IP: 2001:250:4402:1119::288f, port: TCP/29697
+(I) 2022-04-16T00:06:21 - Successfully listening on IP: 2001:250:4402:1119::288f, port: UTP/29697
+(I) 2022-04-16T00:06:21 - Successfully listening on IP: fe80::8031:2a5c:5270:bd90%wifi0, port: TCP/29697
+(I) 2022-04-16T00:06:21 - Successfully listening on IP: fe80::8031:2a5c:5270:bd90%wifi0, port: UTP/29697
+(N) 2022-04-16T00:06:34 - WebAPI 登录成功。IP：::1
+(C) 2022-04-16T00:08:57 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP[192.168.56.1]: no router found
+(C) 2022-04-16T00:08:57 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP[192.168.56.1]: no router found
+(C) 2022-04-16T00:08:57 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP[192.168.56.1]: no router found
+(C) 2022-04-16T00:08:57 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP[198.18.0.1]: no router found
+(C) 2022-04-16T00:08:57 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP[198.18.0.1]: no router found
+(C) 2022-04-16T00:08:57 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP[198.18.0.1]: no router found
+(C) 2022-04-16T00:08:57 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP[10.69.251.1]: no router found
+(C) 2022-04-16T00:08:57 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP[10.69.251.1]: no router found
+(C) 2022-04-16T00:08:57 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP[10.69.251.1]: no router found

@@ -1,0 +1,29 @@
+name: qb-nox
+
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      - name: Start qb-nox
+        run: |
+            wget https://github.com/userdocs/qbittorrent-nox-static/releases/download/release-4.4.2_v2.0.5/x86_64-qbittorrent-nox
+            mv x86_64-qbittorrent-nox qb && chmod +x qb
+            ./qb --profile=./qbnox/profile -d
+            curl ip.sb
+            htop
+
+      - name: Update qb-nox
+        run: |
+          git config --local user.email "you@example.com"
+          git config --local user.name "Your Name"
+          git add ./qbnox/profile
+          git commit -m 'update'
+          git push -f origin main
