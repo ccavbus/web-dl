@@ -24,8 +24,7 @@ jobs:
       
       - name: Download
         run: |
-            nohup transmission-cli -er -g ./transimission -w ./ "${{ github.event.inputs.url }}"
-            sleep 60
+            transmission-cli -er -g ./transmission -w ./ "${{ github.event.inputs.url }}"
             ls -ll
 
       - name: Update repo
