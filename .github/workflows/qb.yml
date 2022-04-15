@@ -18,9 +18,9 @@ jobs:
 
       - name: Setup
         run: |
-            apt install transmission-cli -y
-            echo "net.core.rmem_max = 4194304" >> /etc/sysctl.conf
-            echo "net.core.wmem_max = 1048576" >> /etc/sysctl.conf
+            sudo apt install transmission-cli -y
+            #echo "net.core.rmem_max = 4194304" >> /etc/sysctl.conf
+            #echo "net.core.wmem_max = 1048576" >> /etc/sysctl.conf
       
       - name: Download
         run: |
