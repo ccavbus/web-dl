@@ -19,8 +19,10 @@ jobs:
       - name: Setup
         run: |
             sudo apt install transmission-cli -y
+            sudo echo "net.core.rmem_max = 4194304" >> /etc/sysctl.conf
+            sudo echo "net.core.wmem_max = 1048576" >> /etc/sysctl.conf
       
-      - name: DL
+      - name: Download
         run: |
             transmission-cli -er -g ./transimission -w ./ "${{ github.event.inputs.url }}"
 
