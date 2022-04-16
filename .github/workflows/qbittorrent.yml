@@ -1,0 +1,46 @@
+name: qBitorrent
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL(HTTP/HTTPS OR Metalink)'
+        required: true
+      tag:
+        description: 'Release Tag'
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      - name: Setup
+        run: |
+            wget -q https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.4.2.10/qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip
+            unzip qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip && chmod +x qbittorrent-nox
+      
+      - name: Download
+        run: |
+            ./qbittorrent-nox --profile=./ "${{ github.event.inputs.url }}"
+
+      - name: Release Video
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          automatic_release_tag: ${{ github.event.inputs.tag }}
+          prerelease: false
+          files: |
+            ./qBittorrent/downloads/*
+
+      - name: Clean log
+        uses: igorjs/gh-actions-clean-workflow@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+          days_old: 1

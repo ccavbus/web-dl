@@ -19,18 +19,8 @@ jobs:
       - name: Setup
         run: |
             sudo apt install transmission-cli -y
-            #echo "net.core.rmem_max = 4194304" >> /etc/sysctl.conf
-            #echo "net.core.wmem_max = 1048576" >> /etc/sysctl.conf
       
       - name: Download
         run: |
             transmission-cli -er -g ./transmission -w ./ "${{ github.event.inputs.url }}"
             ls -ll ./transmission
-
-      - name: Update repo
-        run: |
-          git config --local user.email "you@example.com"
-          git config --local user.name "Your Name"
-          git add ./transmission
-          git commit -m 'update'
-          git push -f origin main
