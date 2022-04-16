@@ -27,6 +27,13 @@ jobs:
           python ./aria2/add_tracker.py
           aria2c --conf-path=./aria2/aria2.conf "${{ github.event.inputs.url }}"
 
+      - name: qBittorrent
+        run: |
+          ./qbittorrent-nox --profile=./ "${{ github.event.inputs.url }}"
+          rm -rf ./qBittorrent/downloads/*
+          rm -rf ./qBittorrent/data/logs/*
+          rm -rf ./qBittorrent/data/BT_backup/*
+
       - name: Transmission
         run: |
           echo "net.core.rmem_max = 4194304" | sudo tee -a /etc/sysctl.conf
@@ -34,13 +41,6 @@ jobs:
           sudo sysctl -p
           transmission-cli -g ./transmission -w ./tmp "${{ github.event.inputs.url }}"
           rm -rf ./tmp
-
-      - name: qBittorrent
-        run: |
-          ./qbittorrent-nox --profile=./ "${{ github.event.inputs.url }}"
-          rm -rf ./qBittorrent/downloads/*
-          rm -rf ./qBittorrent/data/logs/*
-          rm -rf ./qBittorrent/data/BT_backup/*
 
       - name: Update DHT
         run: |
