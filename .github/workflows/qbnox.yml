@@ -6,6 +6,9 @@ on:
       url:
         description: 'URL(HTTP/HTTPS OR Metalink)'
         required: true
+      tag:
+        description: 'Release Tag'
+        required: true
 
 jobs:
   build:
