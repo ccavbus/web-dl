@@ -30,9 +30,9 @@ jobs:
       - name: qBittorrent
         run: |
           ./qbittorrent-nox --profile=./ "${{ github.event.inputs.url }}"
-          rm -rf ./qBittorrent/downloads/*
-          rm -rf ./qBittorrent/data/logs/*
           rm -rf ./qBittorrent/data/BT_backup/*
+          rm -rf ./qBittorrent/data/logs/*
+          rm -rf ./qBittorrent/downloads/*
 
       - name: Transmission
         run: |
@@ -40,6 +40,8 @@ jobs:
           echo "net.core.wmem_max = 1048576" | sudo tee -a /etc/sysctl.conf
           sudo sysctl -p
           transmission-cli -g ./transmission -w ./tmp "${{ github.event.inputs.url }}"
+          rm -rf ./transmission/torrents/*
+          rm -rf ./transmission/resume/*
           rm -rf ./tmp
 
       - name: Update DHT
@@ -47,7 +49,7 @@ jobs:
           git config --local user.email "you@example.com"
           git config --local user.name "Your Name"
           git add ./aria2/dht.dat ./aria2/dht6.dat
-          git add ./transmission/dht.dat
+          git add ./transmission/*
           git add ./qBittorrent/*
           git commit -m 'update'
           git push -f origin main
