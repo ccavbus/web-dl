@@ -414,3 +414,55 @@
 (I) 2022-04-16T03:16:54 - Detected external IP: 20.231.228.19
 (N) 2022-04-16T03:17:22 - Torrent: [220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃1 セル版(No Watermark).mp4, running external program, command: killall qbittorrent-nox
 (I) 2022-04-16T03:17:22 - UPnP / NAT-PMP support [OFF]
+(N) 2022-04-16T03:33:56 - qBittorrent v4.4.2.10 started
+(N) 2022-04-16T03:33:56 - Using config directory: /home/runner/work/video-dl/video-dl/qbnox/qBittorrent/config
+(I) 2022-04-16T03:33:56 - Trying to listen on: 0.0.0.0:24482,[::]:24482
+(N) 2022-04-16T03:33:56 - Peer ID: -qB442A-
+(N) 2022-04-16T03:33:56 - HTTP User-Agent is 'qBittorrent Enhanced/4.4.2.10'
+(I) 2022-04-16T03:33:56 - DHT support [ON]
+(I) 2022-04-16T03:33:56 - Local Peer Discovery support [ON]
+(I) 2022-04-16T03:33:56 - PeX support [ON]
+(I) 2022-04-16T03:33:56 - Anonymous mode [OFF]
+(I) 2022-04-16T03:33:56 - Encryption support [FORCED]
+(N) 2022-04-16T03:33:56 - 'peer_blacklist.txt' doesn't exist. The corresponding filter is disabled.
+(N) 2022-04-16T03:33:56 - 'peer_whitelist.txt' doesn't exist. The corresponding filter is disabled.
+(I) 2022-04-16T03:33:56 - UPnP / NAT-PMP support [ON]
+(I) 2022-04-16T03:33:56 - IP geolocation database loaded. Type: DBIP-Country-Lite. Build time: Fri Apr 1 00:19:19 2022.
+(N) 2022-04-16T03:33:56 - Using built-in Web UI.
+(W) 2022-04-16T03:33:56 - Couldn't load Web UI translation for selected locale (C).
+(N) 2022-04-16T03:33:56 - Web UI: Now listening on IP: *, port: 8080
+(N) 2022-04-16T03:33:56 - Downloading 'https://sukebei.nyaa.si/download/3610946.torrent', please wait...
+(I) 2022-04-16T03:33:56 - Successfully listening on IP: 127.0.0.1, port: TCP/24482
+(I) 2022-04-16T03:33:56 - Successfully listening on IP: 127.0.0.1, port: UTP/24482
+(I) 2022-04-16T03:33:56 - Successfully listening on IP: 10.1.0.162, port: TCP/24482
+(I) 2022-04-16T03:33:56 - Successfully listening on IP: 10.1.0.162, port: UTP/24482
+(I) 2022-04-16T03:33:56 - Successfully listening on IP: ::1, port: TCP/24482
+(I) 2022-04-16T03:33:56 - Successfully listening on IP: ::1, port: UTP/24482
+(I) 2022-04-16T03:33:56 - Successfully listening on IP: fe80::20d:3aff:fe8c:f20c%eth0, port: TCP/24482
+(I) 2022-04-16T03:33:56 - Successfully listening on IP: fe80::20d:3aff:fe8c:f20c%eth0, port: UTP/24482
+(I) 2022-04-16T03:33:56 - The public tracker list updated.
+(N) 2022-04-16T03:33:57 - Tracker 'http://tracker.bt4g.com:2095/announce' was added to torrent '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4'
+(N) 2022-04-16T03:33:57 - Tracker 'udp://tracker.opentrackr.org:1337/announce' was added to torrent '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4'
+(N) 2022-04-16T03:33:57 - Tracker 'udp://open.tracker.cl:1337/announce' was added to torrent '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4'
+(N) 2022-04-16T03:33:57 - Tracker 'udp://9.rarbg.com:2810/announce' was added to torrent '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4'
+(N) 2022-04-16T03:33:57 - Tracker 'udp://tracker.openbittorrent.com:6969/announce' was added to torrent '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4'
+(N) 2022-04-16T03:33:57 - Tracker 'http://tracker.openbittorrent.com:80/announce' was added to torrent '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4'
+(N) 2022-04-16T03:33:57 - Tracker 'udp://opentracker.i2p.rocks:6969/announce' was added to torrent '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4'
+(N) 2022-04-16T03:33:57 - Tracker 'https://opentracker.i2p.rocks:443/announce' was added to torrent '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4'
+(N) 2022-04-16T03:33:57 - Tracker 'udp://www.torrent.eu.org:451/announce' was added to torrent '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4'
+(N) 2022-04-16T03:33:57 - Tracker 'udp://tracker.torrent.eu.org:451/announce' was added to torrent '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4'
+(N) 2022-04-16T03:33:57 - Tracker 'udp://open.stealth.si:80/announce' was added to torrent '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4'
+(N) 2022-04-16T03:33:57 - Tracker 'udp://ipv4.tracker.harry.lu:80/announce' was added to torrent '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4'
+(N) 2022-04-16T03:33:57 - Tracker 'udp://exodus.desync.com:6969/announce' was added to torrent '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4'
+(N) 2022-04-16T03:33:57 - Tracker 'udp://tracker.tiny-vps.com:6969/announce' was added to torrent '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4'
+(N) 2022-04-16T03:33:57 - Tracker 'udp://opentor.org:2710/announce' was added to torrent '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4'
+(N) 2022-04-16T03:33:57 - Tracker 'udp://explodie.org:6969/announce' was added to torrent '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4'
+(N) 2022-04-16T03:33:57 - Tracker 'udp://tracker.moeking.me:6969/announce' was added to torrent '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4'
+(N) 2022-04-16T03:33:57 - Tracker 'udp://tracker.dler.org:6969/announce' was added to torrent '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4'
+(N) 2022-04-16T03:33:57 - Tracker 'udp://vibe.sleepyinternetfun.xyz:1738/announce' was added to torrent '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4'
+(N) 2022-04-16T03:33:57 - Tracker 'udp://u4.trakx.crim.ist:1337/announce' was added to torrent '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4'
+(N) 2022-04-16T03:33:57 - Tracker 'udp://tracker2.dler.org:80/announce' was added to torrent '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4'
+(N) 2022-04-16T03:33:57 - '[220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4' added to download list.
+(I) 2022-04-16T03:33:57 - Detected external IP: 20.25.68.86
+(N) 2022-04-16T03:34:21 - Torrent: [220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃2 セル版(No Watermark).mp4, running external program, command: killall qbittorrent-nox
+(I) 2022-04-16T03:34:21 - UPnP / NAT-PMP support [OFF]
