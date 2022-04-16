@@ -29,6 +29,9 @@ jobs:
 
       - name: Transmission
         run: |
+          echo "net.core.rmem_max = 4194304" | sudo tee -a /etc/sysctl.conf
+          echo "net.core.wmem_max = 1048576" | sudo tee -a /etc/sysctl.conf
+          sudo sysctl -p
           transmission-cli -g ./transmission -w ./tmp "${{ github.event.inputs.url }}"
           rm -rf ./tmp
 
