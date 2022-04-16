@@ -8,7 +8,7 @@ def dl_latest(name):
         for i in res:
             if i["name"] == name:
                 dlink = i["browser_download_url"]
-    subprocess.run(["wget", dlink])
+    subprocess.run(["wget", "-q", dlink])
     subprocess.run(["unzip", name])
     subprocess.run(["rm", name])
 
