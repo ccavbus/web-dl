@@ -24,14 +24,30 @@ jobs:
       - name: Download
         run: |
             ./qbittorrent-nox --profile=./qbnox "${{ github.event.inputs.url }}"
-            ls -ll ./qbnox/qBittorrent/downloads
-            rm -rf ./qbnox/qBittorrent/downloads/*
-            rm -rf ./qbnox/qBittorrent/data/BT_backup/*
 
+      - name: Release Video
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          automatic_release_tag: ${{ github.event.inputs.tag }}
+          prerelease: false
+          files: |
+            ./qbnox/qBittorrent/downloads/*
+      
       - name: Update repo
         run: |
+          rm -rf ./qbnox/qBittorrent/downloads/*
+          rm -rf ./qbnox/qBittorrent/data/BT_backup/*
           git config --local user.email "you@example.com"
           git config --local user.name "Your Name"
           git add ./qbnox
           git commit -m 'update'
           git push -f origin main
+
+      - name: Clean log
+        uses: igorjs/gh-actions-clean-workflow@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+          days_old: 1
