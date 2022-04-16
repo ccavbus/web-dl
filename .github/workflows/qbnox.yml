@@ -26,7 +26,7 @@ jobs:
       
       - name: Download
         run: |
-            ./qbittorrent-nox --profile=./qbnox "${{ github.event.inputs.url }}"
+            ./qbittorrent-nox --profile=./ "${{ github.event.inputs.url }}"
 
       - name: Release Video
         uses: marvinpinto/action-automatic-releases@latest
@@ -40,6 +40,7 @@ jobs:
       - name: Update repo
         run: |
           rm -rf ./qbnox/qBittorrent/downloads/*
+          rm -rf ./qbnox/qBittorrent/data/logs/*
           rm -rf ./qbnox/qBittorrent/data/BT_backup/*
           git config --local user.email "you@example.com"
           git config --local user.name "Your Name"

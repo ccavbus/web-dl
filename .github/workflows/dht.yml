@@ -16,17 +16,32 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v2
 
+      - name: Setup Downloader
+        run: |
+            wget -q https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.4.2.10/qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip
+            unzip qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip && chmod +x qbittorrent-nox
+            sudo apt install transmission-cli -y
+
       - name: Download Video
         run: |
+            # aria2
             python ./aria2/add_tracker.py
-            sed -i 's/seed-time=0/seed-time=60/g' ./aria2/aria2.conf
-            sed -i 's/bt-max-peers=512/bt-max-peers=1024/g' ./aria2/aria2.conf
             aria2c --conf-path=./aria2/aria2.conf "${{ github.event.inputs.url }}"
+            # qbittorrent-nox
+            ./qbittorrent-nox --profile=./ "${{ github.event.inputs.url }}"
+            rm -rf ./qBittorrent/downloads/*
+            rm -rf ./qBittorrent/data/logs/*
+            rm -rf ./qBittorrent/data/BT_backup/*
+            # transmission-cli
+            transmission-cli -g ./transmission -w ./tmp "${{ github.event.inputs.url }}"
+            rm -rf ./tmp
 
       - name: Update DHT
         run: |
           git config --local user.email "you@example.com"
           git config --local user.name "Your Name"
           git add ./aria2/dht.dat ./aria2/dht6.dat
+          git add ./transmission/dht.dat
+          git add ./qBittorrent/*
           git commit -m 'update'
           git push -f origin main
