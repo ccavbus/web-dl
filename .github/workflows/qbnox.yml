@@ -23,7 +23,8 @@ jobs:
       
       - name: Download
         run: |
-            ./qbittorrent-nox --profile=./qbnox "${{ github.event.inputs.url }}"
+            nohup ./qbittorrent-nox --profile=./qbnox "${{ github.event.inputs.url }}"
+            sleep 60
             ls -ll ./qbnox/qBittorrent
 
       - name: Update repo
