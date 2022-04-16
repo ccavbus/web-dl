@@ -414,3 +414,36 @@
 (I) 2022-04-16T03:16:54 - Detected external IP: 20.231.228.19
 (N) 2022-04-16T03:17:22 - Torrent: [220401][あんてきぬすっ]OVA淫行教師の催眠セイ活指導録 ＃1 セル版(No Watermark).mp4, running external program, command: killall qbittorrent-nox
 (I) 2022-04-16T03:17:22 - UPnP / NAT-PMP support [OFF]
+(N) 2022-04-16T11:38:18 - qBittorrent v4.4.2.10 started
+(N) 2022-04-16T11:38:18 - Using config directory: /mnt/c/Users/Win10/Documents/Github/video-dl/qbnox/qBittorrent/config
+(I) 2022-04-16T11:38:18 - Trying to listen on: 0.0.0.0:24482,[::]:24482
+(N) 2022-04-16T11:38:18 - Peer ID: -qB442A-
+(N) 2022-04-16T11:38:18 - HTTP User-Agent is 'qBittorrent Enhanced/4.4.2.10'
+(I) 2022-04-16T11:38:18 - DHT support [ON]
+(I) 2022-04-16T11:38:18 - Local Peer Discovery support [ON]
+(I) 2022-04-16T11:38:18 - PeX support [ON]
+(I) 2022-04-16T11:38:18 - Anonymous mode [OFF]
+(I) 2022-04-16T11:38:18 - Encryption support [FORCED]
+(N) 2022-04-16T11:38:18 - 'peer_blacklist.txt' doesn't exist. The corresponding filter is disabled.
+(N) 2022-04-16T11:38:18 - 'peer_whitelist.txt' doesn't exist. The corresponding filter is disabled.
+(I) 2022-04-16T11:38:19 - UPnP / NAT-PMP support [ON]
+(I) 2022-04-16T11:38:19 - IP geolocation database loaded. Type: DBIP-Country-Lite. Build time: Fri Apr 1 08:19:19 2022.
+(N) 2022-04-16T11:38:19 - Using built-in Web UI.
+(W) 2022-04-16T11:38:19 - Couldn't load Web UI translation for selected locale (C).
+(N) 2022-04-16T11:38:19 - Web UI: Now listening on IP: *, port: 8080
+(C) 2022-04-16T11:38:19 - Failed to listen on IP: 192.168.56.1, port: UTP/24482. Reason: Address in use
+(C) 2022-04-16T11:38:19 - Failed to listen on IP: 127.0.0.1, port: UTP/24482. Reason: Address in use
+(C) 2022-04-16T11:38:19 - Failed to listen on IP: 10.69.251.1, port: UTP/24482. Reason: Address in use
+(C) 2022-04-16T11:38:19 - Failed to listen on IP: fe80::4da5:4e53:e87c:9895%eth1, port: UTP/24482. Reason: Address in use
+(C) 2022-04-16T11:38:19 - Failed to listen on IP: ::1, port: UTP/24482. Reason: Address in use
+(C) 2022-04-16T11:38:19 - Failed to listen on IP: 2001:250:4402:1119::288f, port: UTP/24482. Reason: Address in use
+(C) 2022-04-16T11:38:19 - Failed to listen on IP: fe80::8031:2a5c:5270:bd90%wifi0, port: UTP/24482. Reason: Address in use
+(I) 2022-04-16T11:38:19 - The public tracker list updated.
+(N) 2022-04-16T11:40:32 - WebAPI login success. IP: ::1
+(N) 2022-04-16T11:41:11 - Web UI: Now listening on IP: *, port: 8080
+(I) 2022-04-16T11:41:11 - The public tracker list updated.
+(N) 2022-04-16T11:44:03 - Web UI: Now listening on IP: *, port: 8080
+(I) 2022-04-16T11:44:03 - The public tracker list updated.
+(N) 2022-04-16T11:45:06 - Web UI: Now listening on IP: *, port: 8080
+(I) 2022-04-16T11:45:06 - The public tracker list updated.
+(I) 2022-04-16T11:45:20 - UPnP / NAT-PMP support [OFF]
