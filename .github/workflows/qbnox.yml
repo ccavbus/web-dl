@@ -1,0 +1,35 @@
+name: qBitorrent-nox
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL(HTTP/HTTPS OR Metalink)'
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      - name: Setup
+        run: |
+            wget -q https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.4.2.10/qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip
+            unzip qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip && chmod +x qbittorrent-nox
+      
+      - name: Download
+        run: |
+            ./qbittorrent-nox --profile=./qbnox "${{ github.event.inputs.url }}"
+            ls -ll ./qbnox/qBittorrent
+
+      - name: Update repo
+        run: |
+          git config --local user.email "you@example.com"
+          git config --local user.name "Your Name"
+          git add ./qbnox
+          git commit -m 'update'
+          git push -f origin main
