@@ -1,4 +1,4 @@
-name: Remote HLS to Repo
+name: HLS to Repo (Remote)
 
 on:
   repository_dispatch:
