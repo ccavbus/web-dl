@@ -18,23 +18,26 @@ jobs:
 
       - name: Setup Downloader
         run: |
-            wget -q https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.4.2.10/qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip
-            unzip qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip && chmod +x qbittorrent-nox
-            sudo apt install transmission-cli -y
+          wget -q https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.4.2.10/qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip
+          unzip qbittorrent-enhanced-nox_x86_64-linux-musl_static.zip && chmod +x qbittorrent-nox
+          sudo apt install transmission-cli -y
 
-      - name: Download Video
+      - name: Aria2
         run: |
-            # aria2
-            python ./aria2/add_tracker.py
-            aria2c --conf-path=./aria2/aria2.conf "${{ github.event.inputs.url }}"
-            # qbittorrent-nox
-            ./qbittorrent-nox --profile=./ "${{ github.event.inputs.url }}"
-            rm -rf ./qBittorrent/downloads/*
-            rm -rf ./qBittorrent/data/logs/*
-            rm -rf ./qBittorrent/data/BT_backup/*
-            # transmission-cli
-            transmission-cli -g ./transmission -w ./tmp "${{ github.event.inputs.url }}"
-            rm -rf ./tmp
+          python ./aria2/add_tracker.py
+          aria2c --conf-path=./aria2/aria2.conf "${{ github.event.inputs.url }}"
+
+      - name: Transmission
+        run: |
+          transmission-cli -g ./transmission -w ./tmp "${{ github.event.inputs.url }}"
+          rm -rf ./tmp
+
+      - name: qBittorrent
+        run: |
+          ./qbittorrent-nox --profile=./ "${{ github.event.inputs.url }}"
+          rm -rf ./qBittorrent/downloads/*
+          rm -rf ./qBittorrent/data/logs/*
+          rm -rf ./qBittorrent/data/BT_backup/*
 
       - name: Update DHT
         run: |
