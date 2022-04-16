@@ -26,6 +26,7 @@ jobs:
             ./qbittorrent-nox --profile=./qbnox "${{ github.event.inputs.url }}"
             ls -ll ./qbnox/qBittorrent/downloads
             rm -rf ./qbnox/qBittorrent/downloads/*
+            rm -rf ./qbnox/qBittorrent/data/BT_backup/*
 
       - name: Update repo
         run: |
