@@ -25,7 +25,8 @@ jobs:
         run: |
             nohup ./qbittorrent-nox --profile=./qbnox "${{ github.event.inputs.url }}"
             sleep 60
-            ls -ll ./qbnox/qBittorrent
+            ls -ll ./qbnox/qBittorrent/downloads
+            rm -rf ./qbnox/qBittorrent/downloads/*
 
       - name: Update repo
         run: |
