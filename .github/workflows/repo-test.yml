@@ -68,4 +68,4 @@ jobs:
           git config --global user.email "you@example.com"
           git config --global user.name "Your Name"
           cd $REPO && git init && git add . && git commit -m "init"
-          gh repo create $REPO --public --push --source=.
+          gh repo create $REPO --public --push --source=. --remote=upstream
