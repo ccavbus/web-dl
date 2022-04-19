@@ -76,7 +76,7 @@ jobs:
       
       - name: Push to Github
         env:
-          OWNER: ${{ GITHUB_REPOSITORY_OWNER }}
+          OWNER: ${{ github.actor }}
           REPO: ${{ github.event.inputs.repo }}
           TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
