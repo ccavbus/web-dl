@@ -1,17 +1,7 @@
 name: HLS to Repo(gh)
 
 on:
-  workflow_dispatch:
-    inputs:
-      url:
-        description: 'Video URL(HTTP/HTTPS OR Metalink)'
-        required: true
-      path:
-        description: 'Video File Path(Wildcard support)'
-        required: true
-      repo:
-        description: 'Repo Name'
-        required: true
+  workflow_dispatch
 
 jobs:
   build:
