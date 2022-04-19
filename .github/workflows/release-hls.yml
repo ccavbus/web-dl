@@ -45,7 +45,7 @@ jobs:
           -f hls -hls_time 60 -hls_list_size 0 -hls_segment_filename vue%d.ts index.ts
           rm -rf ${{ github.event.inputs.path }}
 
-      - name: Build and upload
+      - name: Upload video
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}      
         run: |
