@@ -49,37 +49,14 @@ jobs:
                  -c copy -sn -f hls -bsf:v h264_mp4toannexb -hls_time 1 \
                  -hls_list_size 0 -hls_segment_filename %4d.ts index.m3u8
           rm -rf ${{ github.event.inputs.path }}
-
-      - name: Setup Git
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 700 ~/.ssh
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          echo "UserKnownHostsFile ~/.ssh/known_hosts" >> ~/.ssh/config
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
-      
-      - name: Create Github repo
-        env:
-          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: |
-          curl \
-          -X POST \
-          -H "Authorization: token $GH_TOKEN" \
-          -H "Content-Type: application/json" \
-          https://api.github.com/user/repos \
-          -d "{\"name\": \"${{ github.event.inputs.repo }}\"}"
-      
+     
       - name: Push to Github
         env:
           OWNER: ${{ github.actor }}
           REPO: ${{ github.event.inputs.repo }}
-          TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
+          gh repo create ${REPO} --public
           ## move video into dir
           mkdir -p dir/res/
           mv *.m3u8 *.ts dir/res/
