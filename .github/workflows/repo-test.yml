@@ -1,0 +1,67 @@
+name: HLS to Repo (gh)
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'Video URL(HTTP/HTTPS OR Metalink)'
+        required: true
+      path:
+        description: 'Video File Path(Wildcard support)'
+        required: true
+      repo:
+        description: 'Repo Name'
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+
+    steps:
+      - name: Maximize build space
+        uses: easimon/maximize-build-space@master
+        with:
+          root-reserve-mb: 512
+          swap-size-mb: 1024
+
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      - name: Setup FFmpeg/Python/Aria2
+        run: |
+          aria2c https://github.com/eugeneware/ffmpeg-static/releases/latest/download/linux-x64
+          chmod +x linux-x64 && sudo mv linux-x64  /usr/local/bin/ffmpeg
+          pip --quiet install bs4 && python ./aria2/add_tracker.py
+
+      - name: Get JAV info
+        run: |
+            python javinfo.py ${{ github.event.inputs.repo }}
+
+      - name: Download video
+        run: |
+            aria2c --conf-path=./aria2/aria2.conf "${{ github.event.inputs.url }}"
+
+      - name: Process video
+        run: |
+          #bash video_preview.sh ${{ github.event.inputs.path }} 480 4 4 preview.jpg
+          ffmpeg -hide_banner -i ${{ github.event.inputs.path }} \
+                 -c copy -f hls -bsf:v h264_mp4toannexb -hls_time 1 \
+                 -hls_list_size 0 -hls_segment_filename %4d.ts index.m3u8
+          rm -rf ${{ github.event.inputs.path }}
+      
+      - name: Create Github repo
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          REPO: ${{ github.event.inputs.repo }}
+        run: |
+          mkdir -p $REPO/res
+          mv *.m3u8 *.ts $REPO/res/
+          mkdir -p $REPO/img
+          imgs=(*.jpg)
+          if [ -f ${imgs[0]} ];then
+            mv *.jpg $REPO/img/
+          fi
+          mv index.html $REPO/
+          cd $REPO && git init && git add .
+          gh repo create $REPO --public --source=.
