@@ -25,6 +25,16 @@ jobs:
           mv ./*.html ./css ./page ./build
 
       - name: Deploy site
-        uses:  NickSchimek/deploy_jamstack_action@main
-        with:
-          build-dir: home/build
+        env:
+          TOKEN: ${{ github.token }}
+          ACTOR: ${{ github.actor }}
+          REPO: ${{ github.repository }}
+        run: |
+          cd build
+          git config --global init.defaultBranch main
+          git init
+          git config user.email "${ACTOR}@users.noreply.github.com"
+          git config user.name "${ACTOR}"
+          git add .
+          git commit -m "Deploy ${GITHUB_SHA}"
+          git push -f "https://${ACTOR}:${TOKEN}@github.com/${REPO}.git" main:gh-pages
