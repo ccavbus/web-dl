@@ -63,5 +63,5 @@ jobs:
             mv *.jpg $REPO/img/
           fi
           mv index.html $REPO/
-          cd $REPO && git init && git add .
+          cd $REPO && git init && git add . && git commit -m "init"
           gh repo create $REPO --public --source=.
