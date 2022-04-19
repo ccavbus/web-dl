@@ -1,4 +1,4 @@
-name: HLS to Repo(gh)
+name: Transmission-cli
 
 on:
   workflow_dispatch
