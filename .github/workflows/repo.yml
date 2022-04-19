@@ -96,14 +96,15 @@ jobs:
           git init
           git add img res/*.m3u8 index.html
           git commit -m "Add img and index"
-          git push -u "https://${OWNER}:${TOKEN}@github.com/${REPO}.git" master
+          git remote add origin https://${OWNER}:${TOKEN}@github.com/${OWNER}/${REPO}.git
+          git push -u origin master
           for i in {0..9};do
             for j in {0..9};do
               files=(res/$i$j??.ts)
               if [ -f ${files[0]} ];then
                 git add "${files[@]}"
                 git commit -m "$i$j st commit"
-                git push -u "https://${OWNER}:${TOKEN}@github.com/${REPO}.git" master
+                git push
               else
                 exit 0
               fi
