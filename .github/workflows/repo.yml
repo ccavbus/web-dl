@@ -73,7 +73,7 @@ jobs:
           git init
           git add img res/*.m3u8 index.html
           git commit -m "Add img and index"
-          git remote add origin https://${OWNER}:${TOKEN}@github.com/${OWNER}/${REPO}.git
+          git remote add origin https://${OWNER}:${GITHUB_TOKEN}@github.com/${OWNER}/${REPO}.git
           git push -u origin master
           for i in {0..9};do
             for j in {0..9};do
