@@ -42,14 +42,15 @@ jobs:
       - name: Process video
         run: |
           ffmpeg -hide_banner -i ${{ github.event.inputs.path }} -c copy -sn \
-          -f hls -hls_time 60 -hls_list_size 0 -hls_segment_filename vue%d.ts index.ts
+          -f hls -hls_time 60 -hls_list_size 0 -hls_segment_filename v%d.ts index.m3u8
           rm -rf ${{ github.event.inputs.path }}
 
       - name: Upload video
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}      
         run: |
-          gh release create "${{ github.event.inputs.tag }}" *.ts
+          tag=`echo "${{ github.event.inputs.tag }}" | sed -e "s/ /_/g"`
+          gh release create $tag index.m3u8 *.ts
 
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@v2
