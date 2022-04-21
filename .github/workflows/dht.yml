@@ -20,7 +20,7 @@ jobs:
         run: |
           python ./qBittorrent/dl_qbee.py
           chmod +x qbittorrent-nox
-          sudo apt install transmission-remote transmission-daemon -y
+          sudo apt install transmission-cli transmission-daemon -y
           #sudo apt install transmission-cli -y
 
       # - name: Aria2
