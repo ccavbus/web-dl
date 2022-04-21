@@ -9,8 +9,8 @@ on:
       path:
         description: 'Video File Path(Wildcard support)'
         required: true
-      tag:
-        description: 'Release Tag'
+      title:
+        description: 'Release Title'
         required: true
 
 jobs:
@@ -47,10 +47,10 @@ jobs:
 
       - name: Upload video
         env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}      
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          title: ${{ github.event.inputs.title }}
         run: |
-          tag=`echo "${{ github.event.inputs.tag }}" | sed -e "s/[\[\ ]/_/g;s/\]/_/g"`
-          gh release create $tag index.m3u8 *.ts
+          gh release create $(date +%F-%H-%M-%S) --title "$title" index.m3u8 *.ts
 
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@v2
