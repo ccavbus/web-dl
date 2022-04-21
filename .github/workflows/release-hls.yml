@@ -49,7 +49,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}      
         run: |
-          tag=`echo "${{ github.event.inputs.tag }}" | sed -e "s/ /_/g"`
+          tag=`echo "${{ github.event.inputs.tag }}" | sed -e "s/[\[\ ]/_/g;s/\]/_/g"`
           gh release create $tag index.m3u8 *.ts
 
       - name: Delete workflow runs
