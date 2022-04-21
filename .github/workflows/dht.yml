@@ -20,29 +20,26 @@ jobs:
         run: |
           python ./qBittorrent/dl_qbee.py
           chmod +x qbittorrent-nox
-          sudo apt install transmission-cli transmission-daemon -y
-          #sudo apt install transmission-cli -y
+          sudo apt install transmission-cli -y
 
-      # - name: Aria2
-      #   run: |
-      #     python ./aria2/add_tracker.py
-      #     aria2c --conf-path=./aria2/aria2.conf "${{ github.event.inputs.url }}"
+      - name: Aria2
+        run: |
+          python ./aria2/add_tracker.py
+          aria2c --conf-path=./aria2/aria2.conf "${{ github.event.inputs.url }}"
 
-      # - name: qBittorrent
-      #   run: |
-      #     ./qbittorrent-nox --profile=./ "${{ github.event.inputs.url }}"
-      #     rm -rf ./qBittorrent/data/BT_backup/*
-      #     rm -rf ./qBittorrent/data/logs/*
-      #     rm -rf ./qBittorrent/downloads/*
+      - name: qBittorrent
+        run: |
+          ./qbittorrent-nox --profile=./ "${{ github.event.inputs.url }}"
+          rm -rf ./qBittorrent/data/BT_backup/*
+          rm -rf ./qBittorrent/data/logs/*
+          rm -rf ./qBittorrent/downloads/*
 
       - name: Transmission
         run: |
           echo "net.core.rmem_max = 4194304" | sudo tee -a /etc/sysctl.conf
           echo "net.core.wmem_max = 1048576" | sudo tee -a /etc/sysctl.conf
           sudo sysctl -p
-          transmission-daemon --no-auth --config-dir ./transmission --download-dir ./tmp --encryption-required --dht --utp
-          transmission-remote 127.0.0.1:9091 --add "${{ github.event.inputs.url }}"
-          #transmission-cli -g ./transmission -w ./tmp "${{ github.event.inputs.url }}"
+          transmission-cli -g ./transmission -w ./tmp "${{ github.event.inputs.url }}"
           rm -rf ./transmission/torrents/*
           rm -rf ./transmission/resume/*
           rm -rf ./tmp
