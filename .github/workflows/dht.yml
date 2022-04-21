@@ -40,7 +40,7 @@ jobs:
           echo "net.core.rmem_max = 4194304" | sudo tee -a /etc/sysctl.conf
           echo "net.core.wmem_max = 1048576" | sudo tee -a /etc/sysctl.conf
           sudo sysctl -p
-          transmission-daemon --config-dir ./transmission --download-dir ./tmp --encryption-required --dht --utp
+          transmission-daemon --no-auth --config-dir ./transmission --download-dir ./tmp --encryption-required --dht --utp
           transmission-remote --pex --add "${{ github.event.inputs.url }}"
           #transmission-cli -g ./transmission -w ./tmp "${{ github.event.inputs.url }}"
           rm -rf ./transmission/torrents/*
