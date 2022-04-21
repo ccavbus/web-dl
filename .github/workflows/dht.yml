@@ -41,7 +41,7 @@ jobs:
           echo "net.core.wmem_max = 1048576" | sudo tee -a /etc/sysctl.conf
           sudo sysctl -p
           transmission-daemon --no-auth --config-dir ./transmission --download-dir ./tmp --encryption-required --dht --utp
-          transmission-remote --pex --add "${{ github.event.inputs.url }}"
+          transmission-remote 127.0.0.1:9091 --add "${{ github.event.inputs.url }}"
           #transmission-cli -g ./transmission -w ./tmp "${{ github.event.inputs.url }}"
           rm -rf ./transmission/torrents/*
           rm -rf ./transmission/resume/*
