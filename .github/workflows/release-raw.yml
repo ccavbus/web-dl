@@ -9,8 +9,8 @@ on:
       path:
         description: 'Video File Path(Wildcard support)'
         required: true
-      tag:
-        description: 'Release Tag'
+      title:
+        description: 'Release Title'
         required: true
 
 jobs:
@@ -38,9 +38,9 @@ jobs:
 
       - name: Upload video
         env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}      
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: |
-          gh release create "${{ github.event.inputs.tag }}" ${{ github.event.inputs.path }}
+          gh release create ${{ github.run_id }} --title "${{ github.event.inputs.title }}" ${{ github.event.inputs.path }}
 
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@v2
@@ -48,4 +48,4 @@ jobs:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
           retain_days: 1
-          keep_minimum_runs: 1
+          keep_minimum_runs: 0
