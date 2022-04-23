@@ -24,18 +24,17 @@ jobs:
         with:
           root-reserve-mb: 512
           swap-size-mb: 1024
-          #remove-dotnet: 'true'
-          #remove-android: 'true'
-          #remove-haskell: 'true'
+          remove-dotnet: 'true'
+          remove-android: 'true'
+          remove-haskell: 'true'
 
       - name: Checkout source
         uses: actions/checkout@v2
 
       - name: Download video
         run: |
-            #python ./aria2/add_tracker.py
-            #aria2c --conf-path=./aria2/aria2.conf "${{ github.event.inputs.url }}"
-            transmission-cli -g ./transmission -w . "${{ github.event.inputs.url }}"
+            python ./aria2/add_tracker.py
+            aria2c --conf-path=./aria2/aria2.conf "${{ github.event.inputs.url }}"
 
       - name: Upload video
         env:
