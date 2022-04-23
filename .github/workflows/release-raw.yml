@@ -33,8 +33,9 @@ jobs:
 
       - name: Download video
         run: |
-            python ./aria2/add_tracker.py
-            aria2c --conf-path=./aria2/aria2.conf "${{ github.event.inputs.url }}"
+            #python ./aria2/add_tracker.py
+            #aria2c --conf-path=./aria2/aria2.conf "${{ github.event.inputs.url }}"
+            transmission-cli -g ./transmission -w . "${{ github.event.inputs.url }}"
 
       - name: Upload video
         env:
