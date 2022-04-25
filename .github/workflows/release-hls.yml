@@ -7,6 +7,9 @@ on:
         description: 'Video URL(HTTP/HTTPS OR Metalink)'
         required: true
       path:
+        description: 'Download Path(Wildcard support)'
+        required: true
+      video:
         description: 'Video File Path(Wildcard support)'
         required: true
       title:
@@ -40,10 +43,9 @@ jobs:
 
       - name: Process video
         run: |
-          ffmpeg -hide_banner -i ${{ github.event.inputs.path }} -c copy -sn \
+          ffmpeg -hide_banner -i ${{ github.event.inputs.video }} -c copy -sn \
           -f hls -hls_time 60 -hls_list_size 0 -hls_segment_filename v%d.ts index.m3u8
-          rm -rf ${{ github.event.inputs.path }}
-
+          
       - name: Upload video
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -54,4 +56,4 @@ jobs:
       - name: Seed back
         run: |
           sed -i "s/seed-time=0//" ./aria2/aria2.conf
-          aria2c --conf-path=./aria2/aria2.conf *.torrent
+          aria2c --conf-path=./aria2/aria2.conf -V -d ${{ github.event.inputs.path }} *.torrent
