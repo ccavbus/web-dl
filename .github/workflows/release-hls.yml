@@ -6,9 +6,6 @@ on:
       url:
         description: 'Video URL(HTTP/HTTPS OR Metalink)'
         required: true
-      path:
-        description: 'Download Path(Wildcard support)'
-        required: true
       video:
         description: 'Video File Path(Wildcard support)'
         required: true
@@ -55,5 +52,5 @@ jobs:
           
       - name: Seed back
         run: |
-          sed -i "s/seed-time=0//" ./aria2/aria2.conf
-          aria2c --conf-path=./aria2/aria2.conf -V -d ${{ github.event.inputs.path }} *.torrent
+          sed -i "s/seed-time=0/seed-ratio=1/" ./aria2/aria2.conf
+          aria2c --conf-path=./aria2/aria2.conf -V -d . *.torrent
