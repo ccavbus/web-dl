@@ -46,6 +46,8 @@ jobs:
         run: |
           #bash video_preview.sh ${{ github.event.inputs.path }} 480 4 4 preview.jpg
           ffmpeg -hide_banner -i ${{ github.event.inputs.path }} \
+                  -vf  "fps=1/60,scale=480:-1,tile=4x30" thumb.jpg
+          ffmpeg -hide_banner -i ${{ github.event.inputs.path }} \
                  -c copy -sn -f hls -bsf:v h264_mp4toannexb -hls_time 1 \
                  -hls_list_size 0 -hls_segment_filename %4d.ts index.m3u8
           rm -rf ${{ github.event.inputs.path }}
