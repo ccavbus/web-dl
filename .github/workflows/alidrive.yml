@@ -5,10 +5,7 @@ on:
     inputs:
       url:
         description: 'URL(HTTP/HTTPS OR Metalink)'
-        required: true
-      dir:
-        description: 'Dir of Alidrive'
-        required: true       
+        required: true    
 
 jobs:
   build:
