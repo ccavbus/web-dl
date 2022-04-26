@@ -42,8 +42,7 @@ jobs:
         run: |
           sed -i "s/did/$drive_id/;s/rtoken/$refresh_token/" alidrive.yaml
           videos=("${{ github.event.inputs.path }}")
-          echo $videos
           for video in $videos;do
-            echo $RANDOM >> "$video"
-            alidrive -c alidrive.yaml "$video" Remote
+            echo -n $RANDOM >> "$video"
+            alidrive -c alidrive.yaml "$video" Video
           done
