@@ -6,9 +6,9 @@ on:
       url:
         description: 'URL(HTTP/HTTPS OR Metalink)'
         required: true
-      path:
-        description: 'Video File Path(Wildcard support)'
-        required: true      
+      dir:
+        description: 'Dir of Alidrive'
+        required: true       
 
 jobs:
   build:
@@ -42,5 +42,4 @@ jobs:
           refresh_token: ${{ secrets.REFRESH_TOKEN }}
         run: |
           sed -i "s/did/$drive_id/;s/rtoken/$refresh_token/" alidrive.yaml
-          alidrive -c alidrive.yaml ./tmp/* Video
-
+          alidrive -c alidrive.yaml ./tmp/* ${{ github.event.inputs.dir }}
