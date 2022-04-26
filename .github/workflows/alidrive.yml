@@ -41,4 +41,4 @@ jobs:
           mv alidrive_uploader_linux_amd64/alidrive ./alidrive
           chmod +x ./alidrive
           sed -i "s/did/$drive_id/;s/rtoken/$refresh_token/" config.yaml
-          ./alidrive "${{ github.event.inputs.url }}" Video
+          ./alidrive "${{ github.event.inputs.path }}" Video
