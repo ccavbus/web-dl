@@ -16,26 +16,22 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v2
 
-      - name: Setup Downloader
-        run: |
-          python ./qBittorrent/dl_qbee.py
-          chmod +x qbittorrent-nox
-          sudo apt install transmission-cli -y
-
       - name: Aria2
         run: |
           python ./aria2/add_tracker.py
           aria2c --conf-path=./aria2/aria2.conf "${{ github.event.inputs.url }}"
 
-      - name: qBittorrent
-        run: |
-          ./qbittorrent-nox --profile=./ "${{ github.event.inputs.url }}"
-          rm -rf ./qBittorrent/data/BT_backup/*
-          rm -rf ./qBittorrent/data/logs/*
-          rm -rf ./qBittorrent/downloads/*
+      # - name: qBittorrent
+      #   run: |
+      #     python ./qBittorrent/dl_qbee.py && chmod +x qbittorrent-nox
+      #     ./qbittorrent-nox --profile=./ "${{ github.event.inputs.url }}"
+      #     rm -rf ./qBittorrent/data/BT_backup/*
+      #     rm -rf ./qBittorrent/data/logs/*
+      #     rm -rf ./qBittorrent/downloads/*
 
       - name: Transmission
         run: |
+          sudo apt install transmission-cli -y
           echo "net.core.rmem_max = 4194304" | sudo tee -a /etc/sysctl.conf
           echo "net.core.wmem_max = 1048576" | sudo tee -a /etc/sysctl.conf
           sudo sysctl -p
@@ -49,8 +45,8 @@ jobs:
           git config --local user.email "you@example.com"
           git config --local user.name "Your Name"
           git add ./aria2/dht.dat ./aria2/dht6.dat
-          git add ./transmission/*
-          git add ./qBittorrent/*
+          git add ./transmission/dht.dat ./transmission/settings.json
+          # git add ./qBittorrent/*
           git commit -m 'update'
           git push -f origin main
 
