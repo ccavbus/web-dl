@@ -45,7 +45,7 @@ jobs:
           git config --local user.email "you@example.com"
           git config --local user.name "Your Name"
           git add ./aria2/dht.dat ./aria2/dht6.dat
-          git add ./transmission/dht.dat ./transmission/settings.json
+          git add ./transmission/dht.dat
           # git add ./qBittorrent/*
           git commit -m 'update'
           git push -f origin main
