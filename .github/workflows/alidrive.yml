@@ -25,11 +25,9 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v2
 
-      - name: Setup Aria2/FFmpeg/Uploader
+      - name: Setup Aria2/Uploader
         run: |
           python ./aria2/add_tracker.py
-          wget -q https://github.com/eugeneware/ffmpeg-static/releases/latest/download/linux-x64 -O /usr/local/bin/ffmpeg
-          chmod +x /usr/local/bin/ffmpeg
           wget -q https://github.com/aoaostar/alidrive-uploader/releases/download/v2.0.2/alidrive_uploader_v2.0.2_linux_amd64.tar.gz
           tar xf alidrive_uploader_v2.0.2_linux_amd64.tar.gz
           mv alidrive_uploader_linux_amd64/alidrive /usr/local/bin/alidrive
@@ -48,7 +46,6 @@ jobs:
           videos=("${{ github.event.inputs.path }}")
           echo $videos
           for video in $videos;do
-            echo "$video"
-            ffmpeg -hide_banner -y -i "$video" -metadata random="$RANDOM" -c copy "$video"
+            echo $RANDOM >> "$video"
             ./alidrive -c alidrive.yaml "$video" Video
           done
