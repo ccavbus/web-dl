@@ -6,6 +6,9 @@ on:
       url:
         description: 'URL(HTTP/HTTPS OR Metalink)'
         required: true
+      path:
+        description: 'Video File Path(Wildcard support)'
+        required: true      
 
 jobs:
   build:
@@ -38,4 +41,4 @@ jobs:
           mv alidrive_uploader_linux_amd64/alidrive ./alidrive
           chmod +x ./alidrive
           sed -i "s/did/$drive_id/;s/rtoken/$refresh_token/" config.yaml
-          ./alidrive tmp BT
+          ./alidrive "${{ github.event.inputs.url }}" Video
