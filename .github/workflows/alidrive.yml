@@ -34,7 +34,8 @@ jobs:
       - name: Download Video
         run: |
           mkdir Video
-          aria2c --conf-path=./aria2/aria2.conf -d tmp "${{ github.event.inputs.url }}"
+          sed -i "s/bt-save-metadata=true//" ./aria2/aria2.conf
+          aria2c --conf-path=./aria2/aria2.conf -d Video "${{ github.event.inputs.url }}"
 
       - name: Upload to Alidrive
         env:
