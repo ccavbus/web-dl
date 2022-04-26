@@ -47,5 +47,5 @@ jobs:
           echo $videos
           for video in $videos;do
             echo $RANDOM >> "$video"
-            ./alidrive -c alidrive.yaml "$video" Video
+            alidrive -c alidrive.yaml "$video" Video
           done
