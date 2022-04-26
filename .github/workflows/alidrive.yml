@@ -34,7 +34,6 @@ jobs:
       - name: Download Video
         run: |
           mkdir Video
-          sed -i "s/bt-save-metadata=true//" ./aria2/aria2.conf
           aria2c --conf-path=./aria2/aria2.conf -d Video "${{ github.event.inputs.url }}"
 
       - name: Upload to Alidrive
@@ -43,4 +42,4 @@ jobs:
           refresh_token: ${{ secrets.REFRESH_TOKEN }}
         run: |
           sed -i "s/did/$drive_id/;s/rtoken/$refresh_token/" alidrive.yaml
-          alidrive -c alidrive.yaml Video/* ${{ github.event.inputs.dir }}
+          alidrive -c alidrive.yaml Video BT

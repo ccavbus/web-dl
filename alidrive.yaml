@@ -3,4 +3,4 @@ transfers: 3
 ali_drive:
   drive_id: did
   refresh_token: rtoken
-  root_path: BT
+  root_path: Remote
