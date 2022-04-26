@@ -29,7 +29,7 @@ jobs:
           aria2c --conf-path=./aria2/aria2.conf -d tmp "${{ github.event.inputs.url }}"
 
       - name: Upload to Alidrive
-        env: |
+        env:
           drive_id: ${{ secrets.DRIVE_ID }}
           refresh_token: ${{ secrets.REFRESH_TOKEN }}
         run: |
