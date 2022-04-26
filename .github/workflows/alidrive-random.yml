@@ -1,4 +1,4 @@
-name: Upload to Alidrive (Random Hash)
+name: Upload to Alidrive(Random)
 
 on:
   workflow_dispatch:
