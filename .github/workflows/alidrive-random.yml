@@ -28,10 +28,8 @@ jobs:
       - name: Setup Aria2/Uploader
         run: |
           python ./aria2/add_tracker.py
-          wget -q https://github.com/aoaostar/alidrive-uploader/releases/download/v2.0.2/alidrive_uploader_v2.0.2_linux_amd64.tar.gz
-          tar xf alidrive_uploader_v2.0.2_linux_amd64.tar.gz
-          mv alidrive_uploader_linux_amd64/alidrive /usr/local/bin/alidrive
-          chmod +x /usr/local/bin/alidrive
+          curl -sL https://raw.githubusercontent.com/aoaostar/alidrive-uploader/v2/install.sh | bash
+          mv alidrive_uploader_linux_amd64/alidrive /usr/local/bin/alidrive && chmod +x /usr/local/bin/alidrive
 
       - name: Download Video
         run: |
@@ -47,5 +45,5 @@ jobs:
           echo $videos
           for video in $videos;do
             echo $RANDOM >> "$video"
-            alidrive -c alidrive.yaml "$video" Video
+            alidrive -c alidrive.yaml "$video" Remote
           done
