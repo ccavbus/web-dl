@@ -47,6 +47,6 @@ jobs:
           sed -i "s/did/$drive_id/;s/rtoken/$refresh_token/" alidrive.yaml
           videos=(${{ github.event.inputs.path }})
           for video in $videos;do
-            ffmpeg -hide_banner -y -i $video -metadata random="$RANDOM" -c copy $video
-            ./alidrive -c alidrive.yaml $video Video
+            ffmpeg -hide_banner -y -i "$video" -metadata random="$RANDOM" -c copy "$video"
+            ./alidrive -c alidrive.yaml "$video" Video
           done
