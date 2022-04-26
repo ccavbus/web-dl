@@ -25,10 +25,18 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v2
 
-      - name: Download Video
+      - name: Setup Aria2/FFmpeg/Uploader
         run: |
           python ./aria2/add_tracker.py
-          mkdir tmp
+          wget -q https://github.com/eugeneware/ffmpeg-static/releases/latest/download/linux-x64 -O /usr/local/bin/ffmpeg
+          chmod +x /usr/local/bin/ffmpeg
+          wget -q https://github.com/aoaostar/alidrive-uploader/releases/download/v2.0.2/alidrive_uploader_v2.0.2_linux_amd64.tar.gz
+          tar xf alidrive_uploader_v2.0.2_linux_amd64.tar.gz
+          mv alidrive_uploader_linux_amd64/alidrive /usr/local/bin/alidrive
+          chmod +x /usr/local/bin/alidrive
+
+      - name: Download Video
+        run: |
           aria2c --conf-path=./aria2/aria2.conf "${{ github.event.inputs.url }}"
 
       - name: Upload to Alidrive
@@ -36,9 +44,9 @@ jobs:
           drive_id: ${{ secrets.DRIVE_ID }}
           refresh_token: ${{ secrets.REFRESH_TOKEN }}
         run: |
-          wget -q https://github.com/aoaostar/alidrive-uploader/releases/download/v2.0.2/alidrive_uploader_v2.0.2_linux_amd64.tar.gz
-          tar xf alidrive_uploader_v2.0.2_linux_amd64.tar.gz
-          mv alidrive_uploader_linux_amd64/alidrive ./alidrive
-          chmod +x ./alidrive
-          sed -i "s/did/$drive_id/;s/rtoken/$refresh_token/" config.yaml
-          ./alidrive ${{ github.event.inputs.path }} Video
+          sed -i "s/did/$drive_id/;s/rtoken/$refresh_token/" alidrive.yaml
+          videos=(${{ github.event.inputs.path }})
+          for video in $videos;do
+            ffmpeg -hide_banner -y -i $video -metadata random="$RANDOM" -c copy $video
+            ./alidrive -c alidrive.yaml $video Video
+          done
