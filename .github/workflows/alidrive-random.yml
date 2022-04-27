@@ -25,18 +25,15 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v2
 
-      - name: Setup Tranmission/Uploader
+      - name: Setup qbee/Uploader
         run: |
-          sudo apt install transmission-cli -y
-          echo "net.core.rmem_max = 4194304" | sudo tee -a /etc/sysctl.conf
-          echo "net.core.wmem_max = 1048576" | sudo tee -a /etc/sysctl.conf
-          sudo sysctl -p
+          python ./qBittorrent/dl_qbee.py && chmod +x qbittorrent-nox
           curl -sL https://raw.githubusercontent.com/aoaostar/alidrive-uploader/v2/install.sh | bash
           mv alidrive_uploader_linux_amd64/alidrive /usr/local/bin/alidrive && chmod +x /usr/local/bin/alidrive
 
       - name: Download Video
         run: |
-          transmission-cli -g ./transmission -w . "${{ github.event.inputs.url }}"
+          ./qbittorrent-nox --profile=. "${{ github.event.inputs.url }}"
 
       - name: Upload to Alidrive
         env:
@@ -44,7 +41,7 @@ jobs:
           refresh_token: ${{ secrets.REFRESH_TOKEN }}
         run: |
           sed -i "s/did/$drive_id/;s/rtoken/$refresh_token/" alidrive.yaml
-          videos=("${{ github.event.inputs.path }}")
+          videos=("./qBittorrent/downloads/${{ github.event.inputs.path }}")
           for video in $videos;do
             echo -n $RANDOM >> "$video"
             alidrive -c alidrive.yaml "$video" Video
