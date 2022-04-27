@@ -25,15 +25,18 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v2
 
-      - name: Setup Aria2/Uploader
+      - name: Setup Tranmission/Uploader
         run: |
-          python ./aria2/add_tracker.py
+          sudo apt install transmission-cli -y
+          echo "net.core.rmem_max = 4194304" | sudo tee -a /etc/sysctl.conf
+          echo "net.core.wmem_max = 1048576" | sudo tee -a /etc/sysctl.conf
+          sudo sysctl -p
           curl -sL https://raw.githubusercontent.com/aoaostar/alidrive-uploader/v2/install.sh | bash
           mv alidrive_uploader_linux_amd64/alidrive /usr/local/bin/alidrive && chmod +x /usr/local/bin/alidrive
 
       - name: Download Video
         run: |
-          aria2c --conf-path=./aria2/aria2.conf "${{ github.event.inputs.url }}"
+          transmission-cli -g ./transmission -w . "${{ github.event.inputs.url }}"
 
       - name: Upload to Alidrive
         env:
