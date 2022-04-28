@@ -44,5 +44,5 @@ jobs:
           videos=("./qBittorrent/downloads/${{ github.event.inputs.path }}")
           for video in $videos;do
             echo -n $RANDOM >> "$video"
-            alidrive -c alidrive.yaml "$video" Video
           done
+          alidrive -c alidrive.yaml BT
