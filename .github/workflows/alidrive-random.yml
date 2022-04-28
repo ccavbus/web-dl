@@ -45,4 +45,4 @@ jobs:
           for video in $videos;do
             echo -n $RANDOM >> "$video"
           done
-          alidrive -c alidrive.yaml BT
+          alidrive -c alidrive.yaml qBittorrent/downloads/
