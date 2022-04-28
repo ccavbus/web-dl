@@ -31,7 +31,7 @@ jobs:
       - name: Download Video
         run: |
           mkdir Video
-          aria2c --conf-path=./aria2/aria2.conf -d Video "${{ github.event.inputs.url }}"
+          aria2c --conf-path=./aria2/aria2.conf -d BT "${{ github.event.inputs.url }}"
 
       - name: Upload to Alidrive
         env:
@@ -39,4 +39,4 @@ jobs:
           refresh_token: ${{ secrets.REFRESH_TOKEN }}
         run: |
           sed -i "s/did/$drive_id/;s/rtoken/$refresh_token/" alidrive.yaml
-          alidrive -c alidrive.yaml Video BT
+          alidrive -c alidrive.yaml BT
