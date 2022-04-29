@@ -45,4 +45,5 @@ jobs:
           for video in $videos;do
             echo -n $RANDOM >> "$video"
           done
-          alidrive -c alidrive.yaml Modify Remote
+          alidrive -c alidrive.yaml Modify Remote >> log.txt
+          cat log.txt
