@@ -61,8 +61,5 @@ if __name__ == '__main__':
     progress = 0
     addr = 'http://localhost:8080'
     while progress != 1:
-        try:
-            progress = torrents_info(addr)
-        except Exception as e:
-            print(e)
+        progress = torrents_info(addr)
         sleep(1)
