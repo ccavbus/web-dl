@@ -31,9 +31,7 @@ def convert_time(eta):
 
 def torrents_info(addr):
     url = addr + '/api/v2/torrents/info'
-    r = requests.get(url)
-    print(r.status_code, r.headers, r.text)
-    info = r.json()[0]
+    info = requests.get(url).json()[0]
     name = info['name']
     hash = info['hash']
     state = info['state']
