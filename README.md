@@ -12,7 +12,7 @@ name: ACCESS_TOKEN
 
 value: content of the token
 
-## BT Downloader
+## BT Downloader Compared
 
 Aria2: Best performent, almost fastest with popular torrent. But it only announce to tracker, so it maybe can not find seeder with unpopular torrent.
 
