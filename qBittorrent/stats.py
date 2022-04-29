@@ -67,4 +67,4 @@ if __name__ == '__main__':
             progress = torrents_info(addr)
         except Exception as e:
             print(e)
-        sleep(1)
+        sleep(3)
