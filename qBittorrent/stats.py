@@ -1,3 +1,4 @@
+import re
 import requests
 from time import sleep
 
@@ -31,7 +32,8 @@ def convert_time(eta):
 
 def torrents_info(addr):
     url = addr + '/api/v2/torrents/info'
-    info = requests.get(url).json()[0]
+    with requests.get(url) as r:
+        info = r.json()[0]
     name = info['name']
     hash = info['hash']
     state = info['state']
