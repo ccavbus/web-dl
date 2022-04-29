@@ -48,7 +48,6 @@ def torrents_info(addr):
     return progress
 
 
-
 def get_maindata(addr, rid):
     url = addr + f'/api/v2/sync/maindata?{rid}'
     r = requests.get(url)
@@ -57,7 +56,7 @@ def get_maindata(addr, rid):
     peers = r.json()['server_state']['total_peer_connections']
     return rid,dht_nodes,peers
     
-    
+
 if __name__ == '__main__':
     progress = 0
     addr = 'http://localhost:8080'
