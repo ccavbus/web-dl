@@ -1,4 +1,3 @@
-import re
 import requests
 from time import sleep
 
@@ -67,4 +66,4 @@ if __name__ == '__main__':
             progress = torrents_info(addr)
         except Exception as e:
             print(e)
-        sleep(3)
+        sleep(2)
