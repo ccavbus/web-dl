@@ -16,6 +16,6 @@ value: content of the token
 
 Aria2: Best performent, almost fastest with popular torrent. But it only announce to one tracker, so it maybe can not find seeder with unpopular torrent.
 
-qBittorrent: Good performent, mostly slower than aria2 with popular torrent. It can announce to all trackers, so it can download unpopular torrent most of the time.
+qBittorrent: Good performent, mostly slower than aria2 but faster than transmission with popular torrent. It can announce to all trackers, so it can download unpopular torrent most of the time.
 
-Transmission: Good performent, mostly slower than aria2 with popular torrent. It can announce to tracker but always failed.
+Transmission: Good performent, but mostly slower than aria2 with popular torrent. It can announce to tracker but always failed.
