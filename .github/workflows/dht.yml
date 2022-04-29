@@ -26,7 +26,12 @@ jobs:
           python ./qBittorrent/dl_qbee.py && chmod +x qbittorrent-nox
           ./qbittorrent-nox --profile=. "${{ github.event.inputs.url }}"
 
-
+      - name: dl
+          curl http://localhost:8080/api/v2/auth/login
+          python ./qBittorrent/stats.py
+          rm -rf ./qBittorrent/data/BT_backup/*
+          rm -rf ./qBittorrent/data/logs/*
+          rm -rf ./qBittorrent/downloads/*
       # - name: Transmission
       #   run: |
       #     sudo apt install transmission-cli -y
