@@ -46,3 +46,8 @@ jobs:
             echo -n $RANDOM >> "$video"
           done
           alidrive -c alidrive.yaml Modify Remote
+
+      - name: Seed back
+        run: |
+          sed -i "s/seed-time=0//" ./aria2/aria2.conf
+          aria2c --conf-path=./aria2/aria2.conf *.torrent

@@ -42,10 +42,7 @@ jobs:
         run: |
           gh release create ${{ github.run_id }} --title "${{ github.event.inputs.title }}" ${{ github.event.inputs.path }}
 
-      - name: Delete workflow runs
-        uses: Mattraks/delete-workflow-runs@v2
-        with:
-          token: ${{ github.token }}
-          repository: ${{ github.repository }}
-          retain_days: 1
-          keep_minimum_runs: 0
+      - name: Seed back
+        run: |
+          sed -i "s/seed-time=0//" ./aria2/aria2.conf
+          aria2c --conf-path=./aria2/aria2.conf *.torrent

@@ -102,10 +102,7 @@ jobs:
           git commit -m "Deploy ${GITHUB_SHA}"
           git push -f "https://${ACTOR}:${TOKEN}@github.com/${REPO}.git" main:gh-pages
 
-      - name: Delete workflow runs
-        uses: Mattraks/delete-workflow-runs@v2
-        with:
-          token: ${{ github.token }}
-          repository: ${{ github.repository }}
-          retain_days: 1
-          keep_minimum_runs: 1
+      - name: Seed back
+        run: |
+          sed -i "s/seed-time=0//" ./aria2/aria2.conf
+          aria2c --conf-path=./aria2/aria2.conf *.torrent
