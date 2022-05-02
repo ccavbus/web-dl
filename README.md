@@ -18,4 +18,4 @@ Aria2: Best performent, almost fastest with popular torrent. But it only announc
 
 qBittorrent: Good performent, mostly slower than aria2 but faster than transmission with popular torrent. It can announce to all trackers, so it can download unpopular torrent most of the time.
 
-Transmission: Good performent, but mostly slower than aria2 with popular torrent. It can announce to tracker but always failed.
+Transmission: Poor performent, mostly slower than aria2 and qBittorrent. It can announce to tracker but seem to always failed.
