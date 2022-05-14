@@ -37,6 +37,7 @@ jobs:
 
       - name: Process video
         run: |
+          ffmpeg -help encoder=libasvav1
           ffmpeg -hide_banner -i ${{ github.event.inputs.video }} -c:v av1 op.mp4
           ls -ll
           
