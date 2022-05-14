@@ -37,6 +37,7 @@ jobs:
 
       - name: Process video
         run: |
-          ffmpeg -hide_banner -i ${{ github.event.inputs.video }} -c:v av1 -row-mt 1 -cpu-used 2 op.mp4
+          ffmpeg -h encoder=libx265
+          ffmpeg -hide_banner -i ${{ github.event.inputs.video }} -c:v libx265 op.mp4
           ls -ll
           
