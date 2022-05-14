@@ -37,6 +37,6 @@ jobs:
 
       - name: Process video
         run: |
-          ffmpeg -hide_banner -i ${{ github.event.inputs.video }} -vf scale=-1:720 -c copy op.mp4
+          ffmpeg -hide_banner -i ${{ github.event.inputs.video }} -vf scale=-1:720 -c:v libx264 -crf 18 -preset veryslow -c:a copy op.mp4
           ls -ll
           
