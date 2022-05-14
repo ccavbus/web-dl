@@ -37,7 +37,6 @@ jobs:
 
       - name: Process video
         run: |
-          ffmpeg -h encoder=libx265
-          ffmpeg -hide_banner -i ${{ github.event.inputs.video }} -c:v libx265 op.mp4
+          ffmpeg -hide_banner -i ${{ github.event.inputs.video }} -vf scale=-1:720 -c copy op.mp4
           ls -ll
           
