@@ -17,15 +17,9 @@ def list_repos(token, page=1):
     return repo_name_list
 
 # generate detail page for each video
-# owner: github username/account
 # repo: github repository name
-def gen_page(owner, repo):
-    r = requests.head(f"https://raw.githubusercontent.com/{owner}/{repo}/master/img/thumb01.jpg")
-    if r.status_code == 200:
-        hls_name = "./template/hls-thumb.html"
-    else:
-        hls_name = "./template/hls.html"
-    hls = open(hls_name, 'r')
+def gen_page(repo):
+    hls = open("./template/hls.html", 'r')
     page = open(f'./page/{repo}.html', 'a')
     content = hls.read().replace('{name}', repo)
     page.write(content)
