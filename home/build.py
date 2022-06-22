@@ -18,7 +18,7 @@ def list_repos(token, page=1):
 
 # generate detail page for each video
 # repo: github repository name
-def gen_page(repo):
+def gen_detail_page(repo):
     hls = open("./template/hls.html", 'r')
     page = open(f'./page/{repo}.html', 'a')
     content = hls.read().replace('{name}', repo)
@@ -50,7 +50,7 @@ def gen_card_tag(href, img_src, title):
 # index_num: index page number
 # video_id_list: a list of video_id(repo name)
 # total_page: number of index page(for figuring out number of pagination)
-def gen_index(owner, index_num, video_id_list, total_page):
+def gen_index_page(owner, index_num, video_id_list, total_page):
     html_name = f"index{index_num}.html"
     exclude_repos = {'web-dl', 'JavSub'}
     html = open(html_name, "wb")
@@ -69,7 +69,7 @@ def gen_index(owner, index_num, video_id_list, total_page):
         new_item = gen_card_tag(f"./page/{video_id}.html", img, video_id)
         card_list.append(new_item)
         print(video_id, "had added to index!")
-        gen_page(owner,video_id)
+        gen_detail_page(video_id)
     # pagination
     page_list = soup.find("div",{"class": "pagination"}).ul
     # prev
@@ -118,4 +118,4 @@ if __name__ == '__main__':
     total_page = int(get_public_repo_num(owner)/30) + 1
     for i in range(1, total_page + 1):
         info = list_repos(token, i)
-        gen_index(owner, i, info, total_page)
+        gen_index_page(owner, i, info, total_page)
