@@ -64,13 +64,14 @@ def gen_index(owner, index_num, video_id_list, total_page):
     soup = BeautifulSoup(homepage.read(), "html.parser")
     # add iterm to card-list
     card_list = soup.body.ul
+    proxy_url = 'https://fastv.pages.dev'
     for video_id in video_id_list:
         if video_id in exclude_repos:
             continue
         if requests.head(f"https://raw.githubusercontent.com/{owner}/{video_id}/master/img/pic0.jpg").status_code == 200:
-            img = f"https://cdn.chan.im/video/{video_id}/online/img/pic0.jpg"
+            img = f"{proxy_url}/video/{video_id}/online/img/pic0.jpg"
         else:
-            img = f"https://cdn.chan.im/video/{video_id}/online/pic0.jpg"
+            img = f"{proxy_url}/video/{video_id}/online/pic0.jpg"
         new_item = gen_card_tag(f"./page/{video_id}.html", img, video_id)
         card_list.append(new_item)
         print(video_id, "had added to index!")
