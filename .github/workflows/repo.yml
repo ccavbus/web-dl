@@ -26,7 +26,7 @@ jobs:
           swap-size-mb: 1024
 
       - name: Checkout source
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup FFmpeg/Python/Aria2
         run: |
@@ -58,8 +58,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
           gh repo create ${REPO} --public
-          git config --global user.name "Your Name"
-          git config --global user.email "you@example.com"
+          git config --global user.name "${OWNER}"
+          git config --global user.email "${OWNER}@users.noreply.github.com"
           ## move video into dir
           mkdir -p dir/res/
           mv *.m3u8 *.ts dir/res/
